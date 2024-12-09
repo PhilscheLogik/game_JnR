@@ -1,0 +1,31 @@
+/* ------------------- Header -----------------*/
+header {
+    background-color: var(--font_highlight);
+    color: var(--bg_color);
+
+    padding: 10px var(--padding_calc);
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: var(--height-header);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    box-sizing: border-box;
+}
+
+/* -------------------  Navbar  -----------------*/
+nav>img {
+    cursor: pointer;
+    height: var(--height_img);
+}
+
+nav>img:hover {
+    filter: drop-shadow(0px 0px 2px var(--bg_color));
+}
+

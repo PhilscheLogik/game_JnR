@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <!-- Shift + Alt + F -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Games</title>
+
+    <link href="css/general.css" rel="stylesheet" type="text/css" />
+    <link href="css/header.css" rel="stylesheet" type="text/css" />
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/footer.css" rel="stylesheet" type="text/css" />
+    <link href="css/media.css" rel="stylesheet" type="text/css" />
+
+    <link
+      rel="icon"
+      href="./asset/img/favicon/favicon.png"
+      type="image/x-icon"
+    />
+  </head>
+
+  <body id="body-container" onload="init()">
+    <!-- header -->
+    <header>
+      <img src="#" alt="Logo" />
+      <h1>Game</h1>
+
+      <nav onclick="">
+        <img
+          id="burger-menue"
+          src="./asset/img/icon/menu_burger_icon.png"
+          alt="burger Icon"
+        />
+      </nav>
+    </header>
+    <!-- main -->
+    <main>
+      <canvas></canvas>
+    </main>
+
+    <!-- footbar -->
+    <footer>
+      <p>© 2025 Alle Rechte vorbehalten.</p>
+      <p>
+        Bilder stammen von
+        <a target="_blank" href="https://pixabay.com/de/">Pixabay</a>
+      </p>
+      <p>
+        Icons sind von
+        <a
+          target="_blank"
+          href="https://fonts.google.com/icons?icon.size=24&icon.color=%23e8eaed"
+          >Google Fonts</a
+        >
+      </p>
+      <a href="https://github.com/PhilscheLogik" target="_blank"
+        ><img src="./asset/img//logo/github.png" alt="github logo"
+      /></a>
+    </footer>
+  </body>
+
+  <script src="./js/database.js" defer="defer"></script>
+  <script src="./js/template.js" defer="defer"></script>
+  <script src="./js/game.js" defer="defer"></script>
+</html>

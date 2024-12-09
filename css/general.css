@@ -1,0 +1,53 @@
+/**
+* icon src: https://fonts.google.com/icons?selected=Material+Symbols+Outlined:remove:FILL@0;wght@400;GRAD@0;opsz@24&icon.size=24&icon.color=%23e8eaed
+*/
+
+/* -------------------  Variablendeklaration -----------------*/
+:root {
+
+    /* colors */
+    --font_basic: black;
+    --font_highlight: rgb(245, 131, 0);
+
+    --bg_color: whitesmoke;
+    --bg_color_hover: #dcdcdc88;
+    --bg_highlight: rgb(201, 174, 83);
+    --bg_color_footer: rgb(54, 47, 39);
+
+    /* value */
+    --b_rad: 16px;
+    --padding_calc: calc(max(16px, (100vw - 1440px) / 2));
+    --height_img: 50px;
+    --height-header: 100px;
+}
+
+/* -------------------  body Einstellungen  -----------------*/
+body {
+    min-height: 100vh;
+    background: var(--bg_color);
+    color: var(--font_basic);
+
+    font-size: 16px;
+
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    overflow-wrap: break-word;
+}
+
+.d_none {
+    display: none;
+}
+
+.highlight {
+    background-image: linear-gradient(120deg, var(--font_highlight) 0%, crimson, 50%, var(--bg_highlight) 100%);
+    color: transparent;
+    background-clip: text;
+    font-weight: bold;
+}
