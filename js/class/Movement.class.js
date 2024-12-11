@@ -1,10 +1,8 @@
 class Movement {
   x = 20;
-  y = 30;
-  w = 150;
-  h = 100;
-
-
+  y = 150;
+  w = 288;
+  h = 48;
   img;
 
   loadImage(path) {

@@ -8,17 +8,15 @@
  * Initialisiert verschiedene Funktionen: ...
  */
 const init = () => {
-  
   canvas = document.getElementById("canvas");
-  world = new World(canvas);
-  
 
-  // character.src =
-  //   "../asset/img/img_sharkie/1.Sharkie/1.IDLE/1.png";
-  // ctx.drawImage(character, 20, 20, 50, 150);
+  canvas.width = 720; // Interne Auflösung
+  canvas.height = 480; // Interne Auflösung
+  canvas.style.width = "720px"; // Sichtbare Größe
+  canvas.style.height = "480px"; // Sichtbare Größe
+
+  world = new World(canvas);  
   console.log(world);
-  
-
 };
 
 // -------------- Zeug --------------------

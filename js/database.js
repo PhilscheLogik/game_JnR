@@ -4,5 +4,4 @@
  */
 
 let canvas;
-
 let world;

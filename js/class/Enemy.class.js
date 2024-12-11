@@ -1,6 +1,9 @@
-class Enemy extends Movement {  
-
+class Enemy extends Movement {
   constructor() {
-    super().loadImage("../../asset/img/img_sharkie/2_enemy/0_puffer_fish/0_swim/1.swim1.png");    
+    super().loadImage(
+      "../../asset/img/img_sharkie/2_enemy/6_fish/Idle.png"
+    );
+    this.x = 150 + Math.random()*100;     
+    this.w = 192;
   }
 }

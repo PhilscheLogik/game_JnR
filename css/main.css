@@ -13,6 +13,6 @@ main {
 
 canvas {
     background-color: var(--font_basic);
-    width: 720px;
-    height: 480px;
+    /* width: 960px;
+    height: 540px; */
 }
