@@ -8,13 +8,17 @@
  * Initialisiert verschiedene Funktionen: ...
  */
 const init = () => {
-  canvas = document.getElementById("canvas");
-  ctx = canvas.getContext("2d");
-
-  character.src =
-    "../asset/img/img_sharkie/1.Sharkie/1.IDLE/1.png";
-  ctx.drawImage(character, 20, 20, 50, 150);
   
+  canvas = document.getElementById("canvas");
+  world = new World(canvas);
+  
+
+  // character.src =
+  //   "../asset/img/img_sharkie/1.Sharkie/1.IDLE/1.png";
+  // ctx.drawImage(character, 20, 20, 50, 150);
+  console.log(world);
+  
+
 };
 
 // -------------- Zeug --------------------

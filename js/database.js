@@ -4,5 +4,5 @@
  */
 
 let canvas;
-let ctx;
-let character = new Image();
+
+let world;
