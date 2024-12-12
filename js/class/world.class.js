@@ -2,16 +2,21 @@ class World {
   ctx;
   canvas;
 
-  enemies = [new Enemy(), new Enemy(), new Enemy()];
   character = new PlayableCharacter();
+  enemies = [new Fish(), new Fishman(), new Fish()];
+  
 
   // -----------------------------------------------
-  bubbles = [
-    new Bubble(
-      "../../asset//img/img_sharkie/3_background/Alternativ/background 3/4.png"
-    ),
+  foregrounds = [
     new Bubble(
       "../../asset//img/img_sharkie/3_background/Alternativ/background 3/5.png"
+    ),
+    new BackgroundObject(
+      "../../asset//img/img_sharkie/3_background/Alternativ/background 3/6.png",
+      0,
+      0,
+      720,
+      480
     ),
   ];
 
@@ -19,6 +24,13 @@ class World {
   backgroundObjects = [
     new BackgroundObject(
       "../../asset//img/img_sharkie/3_background/Alternativ/background 3/1.png",
+      0,
+      0,
+      720,
+      480
+    ),
+    new BackgroundObject(
+      "../../asset//img/img_sharkie/3_background/Alternativ/background 2/5.png",
       0,
       0,
       720,
@@ -38,12 +50,8 @@ class World {
       720,
       480
     ),
-    new BackgroundObject(
-      "../../asset//img/img_sharkie/3_background/Alternativ/background 3/6.png",
-      0,
-      0,
-      720,
-      480
+    new Bubble(
+      "../../asset//img/img_sharkie/3_background/Alternativ/background 3/4.png"
     ),
   ];
 
@@ -101,7 +109,7 @@ class World {
     this.addObjToMapInParts(this.enemies, 4);
 
     // zeichnet Luftblasen
-    this.addObjToMapComplete(this.bubbles);
+    this.addObjToMapComplete(this.foregrounds);
 
     // let self = this;
     // requestAnimationFrame(function(){
