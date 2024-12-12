@@ -10,10 +10,10 @@
 const init = () => {
   canvas = document.getElementById("canvas");
 
-  canvas.width = 720; // Interne Auflösung
-  canvas.height = 480; // Interne Auflösung
-  canvas.style.width = "720px"; // Sichtbare Größe
-  canvas.style.height = "480px"; // Sichtbare Größe
+  canvas.width = 720;
+  canvas.height = 480;
+  // canvas.style.width = "720px"; 
+  // canvas.style.height = "480px";
 
   world = new World(canvas);  
   console.log(world);

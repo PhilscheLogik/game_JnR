@@ -1,6 +1,6 @@
 class Movement {
   x = 20;
-  y = 150;
+  y = 200;
   w = 288;
   h = 48;
   img;
