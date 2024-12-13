@@ -7,6 +7,8 @@ main {
     justify-content: center;
     align-items: center;
 
+    background: linear-gradient(#075492, #117a52, #1fcf8c, #117a52, #075492);
+
     padding: 16px var(--padding_calc);
     margin-top: var(--height-header);
 }

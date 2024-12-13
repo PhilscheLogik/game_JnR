@@ -2,9 +2,17 @@ class World {
   ctx;
   canvas;
 
-  character = new PlayableCharacter();
-  enemies = [new Fish(), new Fishman(), new Fish()];
-  
+  character = new PlayableCharacter(
+    "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Idle.png",
+    6
+  );
+  enemies = [
+    new Fish("../../asset/img/img_sharkie/2_enemy/6_fish/Walk.png", 4),
+    new Fishman("../../asset/img/img_sharkie/2_enemy/5_fish_man/Idle.png", 4),
+    new Fish("../../asset/img/img_sharkie/2_enemy/6_fish/Walk.png", 4),
+    new Fish("../../asset/img/img_sharkie/2_enemy/6_fish/Walk.png", 4),
+    new Fishman("../../asset/img/img_sharkie/2_enemy/5_fish_man/Idle.png", 4),
+  ];
 
   // -----------------------------------------------
   foregrounds = [
@@ -55,7 +63,7 @@ class World {
     ),
   ];
 
-  // -----------------------------------------------
+  /* -----------------------------------------------*/
   constructor(canvas) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
@@ -83,7 +91,7 @@ class World {
   addToMapInParts(item, divisor) {
     this.ctx.drawImage(
       item.img,
-      item.w / divisor,
+      (item.w / divisor) * item.frameIndex,
       0,
       item.w / divisor,
       item.h,
