@@ -1,9 +1,10 @@
 class World {
   ctx;
   canvas;
+  keyboard;
 
   character = new PlayableCharacter(
-    "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Idle.png",
+    "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Swim.png",
     6
   );
   enemies = [
@@ -63,13 +64,6 @@ class World {
     ),
   ];
 
-  /* -----------------------------------------------*/
-  constructor(canvas) {
-    this.ctx = canvas.getContext("2d");
-    this.canvas = canvas;
-    this.draw();
-  }
-
   // -----------------------------------------------
   addObjToMapComplete(obj) {
     obj.forEach((item) => {
@@ -84,22 +78,61 @@ class World {
 
   // -----------------------------------------------
   addToMapComplete(item) {
-    this.ctx.drawImage(item.img, item.x, item.y, item.w, item.h);
+    if (item.otherDirection) {
+      this.ctx.save();
+      // this.ctx.translate(item.img.width, 0);
+      this.ctx.scale(-1, 1);
+      this.ctx.drawImage(item.img, -item.x, item.y, item.w, item.h);
+    } else {
+      this.ctx.drawImage(item.img, item.x, item.y, item.w, item.h);
+    }
+    this.ctx.restore();
   }
 
   // -----------------------------------------------
   addToMapInParts(item, divisor) {
-    this.ctx.drawImage(
-      item.img,
-      (item.w / divisor) * item.frameIndex,
-      0,
-      item.w / divisor,
-      item.h,
-      item.x,
-      item.y,
-      item.w / divisor,
-      item.h
-    );
+    if (item.otherDirection) {
+      this.ctx.save();
+      // this.ctx.translate(item.img.width, 0);
+      this.ctx.scale(-1, 1);
+      this.ctx.drawImage(
+        item.img,
+        (item.w / divisor) * item.frameIndex,
+        0,
+        item.w / divisor,
+        item.h,
+        -item.x - item.w / divisor,
+        item.y,
+        item.w / divisor,
+        item.h
+      );
+    } else {
+      this.ctx.drawImage(
+        item.img,
+        (item.w / divisor) * item.frameIndex,
+        0,
+        item.w / divisor,
+        item.h,
+        item.x,
+        item.y,
+        item.w / divisor,
+        item.h
+      );
+    }
+    this.ctx.restore();
+  }
+
+  /* -----------------------------------------------*/
+  constructor(canvas, keyboard) {
+    this.ctx = canvas.getContext("2d");
+    this.canvas = canvas;
+    this.keyboard = keyboard;
+    this.draw();
+    this.setWorld();
+  }
+
+  setWorld() {
+    this.character.world = this;
   }
 
   // -----------------------------------------------

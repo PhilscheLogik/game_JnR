@@ -15,15 +15,15 @@ const init = () => {
   // canvas.style.width = "720px";
   // canvas.style.height = "480px";
 
-  world = new World(canvas);
+  world = new World(canvas, keyboard);
   console.log(world);
 };
 
 document.addEventListener("keydown", (event) => {
   switch (event.code) {
     case "KeyW":
-    case "ArrowUp": 
-    keyboard.UP = true;
+    case "ArrowUp":
+      keyboard.UP = true;
       console.log("Move Up ON");
       break;
 
@@ -40,8 +40,8 @@ document.addEventListener("keydown", (event) => {
       break;
 
     case "KeyD":
-    case "ArrowRight": 
-    keyboard.RIGHT = true;
+    case "ArrowRight":
+      keyboard.RIGHT = true;
       console.log("Move Right ON");
       break;
 
@@ -64,8 +64,8 @@ document.addEventListener("keydown", (event) => {
 document.addEventListener("keyup", (event) => {
   switch (event.code) {
     case "KeyW":
-    case "ArrowUp": 
-    keyboard.UP = false;
+    case "ArrowUp":
+      keyboard.UP = false;
       console.log("Move Up OFF");
       break;
 
@@ -82,8 +82,8 @@ document.addEventListener("keyup", (event) => {
       break;
 
     case "KeyD":
-    case "ArrowRight": 
-    keyboard.RIGHT = false;
+    case "ArrowRight":
+      keyboard.RIGHT = false;
       console.log("Move Right OFF");
       break;
 

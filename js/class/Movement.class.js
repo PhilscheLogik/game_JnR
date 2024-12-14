@@ -7,6 +7,7 @@ class Movement {
   imgCache = {};
   currentIndex = 0;
   speed = 0.5;
+  otherDirection = false;
 
   loadImage(path) {
     this.img = new Image();
