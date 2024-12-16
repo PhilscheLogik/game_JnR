@@ -2,10 +2,11 @@ class Bubble extends Movement {
   w = 720;
   h = 405;
 
-  constructor(path) {
+  constructor(path, x, y) {
     super().loadImage(path);
-    this.y = 480; 
-    this.x= -100 + Math.random() * 200;   
+    this.y = y; 
+    this.x = -100 + Math.random() * 720 ;   
+     
 
     this.moveToUp();
     // this.moveToDown();

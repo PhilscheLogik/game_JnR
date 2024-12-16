@@ -10,6 +10,8 @@ class PlayableCharacter extends Movement {
   world;
   speed = 3;
 
+  swim_sound = new Audio("./asset/audio/effects/char/swim.mp3");
+
   constructor(path, divisor) {
     super().loadImage(path);
 
@@ -19,33 +21,49 @@ class PlayableCharacter extends Movement {
     this.animate();
   }
 
+  playSwimSound(audio) {
+    if (audio.paused) {
+      audio.currentTime = 0; // Zurücksetzen, wenn pausiert
+      audio.play().catch((err) => {
+        console.error('Fehler beim Abspielen des Sounds:', err);
+      });
+    }
+  }
+
   animate() {
     setInterval(() => {
-      if (this.world.keyboard.RIGHT) {
-        if (this.x < 670) {
-          this.x += this.speed;          
-        }
+      this.swim_sound.pause();
+      
+      if (
+        this.world.keyboard.RIGHT &&
+        this.x < this.world.level.level_max_x_coordinate
+      ) {
+        this.x += this.speed;
+
         this.otherDirection = false;
+        this.swim_sound.play();
       }
 
-      if (this.world.keyboard.LEFT) {
-        if (this.x > 0) {
-          this.x -= this.speed;          
-        }
+      if (this.world.keyboard.LEFT && this.x > 0) {
+        this.x -= this.speed;
+
         this.otherDirection = true;
+        this.swim_sound.play();
       }
 
-      if (this.world.keyboard.UP) {
-        if (this.y > 0) {
-          this.y -= this.speed;
-        }
+      this.world.camera_x = -this.x;
+
+      if (this.world.keyboard.UP && this.y > 0) {
+        this.y -= this.speed;
+        this.swim_sound.play();
       }
 
-      if (this.world.keyboard.DOWN) {
-        if (this.y < 430) {
-          this.y += this.speed;
-        }
+      if (this.world.keyboard.DOWN && this.y < this.world.level.level_max_y_coordinate) {
+        this.y += this.speed;
+        this.swim_sound.play();
       }
+
+      // this.world.camera_y = -this.y;
     }, 100 / 6);
 
     setInterval(() => {
@@ -55,7 +73,7 @@ class PlayableCharacter extends Movement {
         this.world.keyboard.UP ||
         this.world.keyboard.DOWN
       ) {
-        if (this.x < 670) {
+        if (this.x < this.world.level.level_max_x_coordinate) {
           this.x += this.speed;
         }
         if (this.x > 0) {
@@ -66,7 +84,7 @@ class PlayableCharacter extends Movement {
           this.y -= this.speed;
         }
 
-        if (this.y < 410) {
+        if (this.y < this.world.level.level_max_y_coordinate) {
           this.y += this.speed;
         }
 
