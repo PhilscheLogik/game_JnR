@@ -9,13 +9,17 @@ class PlayableCharacter extends Movement {
   totalFrames = 6;
   world;
   speed = 3;
-
   swim_sound = new Audio("./asset/audio/effects/char/swim.mp3");
 
-  constructor(path, divisor) {
-    super().loadImage(path);
+  IMG_SWIM = {
+    path: "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Swim.png",
+    animationCount: 6,
+  };
 
-    this.totalFrames = divisor;
+  constructor() {
+    super().loadImage(IMG_SWIM.path);
+
+    this.totalFrames = IMG_SWIM.divisor;
 
     // this.loadImages(this.IMG_ANIMATION);
     this.animate();
@@ -25,7 +29,7 @@ class PlayableCharacter extends Movement {
     if (audio.paused) {
       audio.currentTime = 0; // Zurücksetzen, wenn pausiert
       audio.play().catch((err) => {
-        console.error('Fehler beim Abspielen des Sounds:', err);
+        console.error("Fehler beim Abspielen des Sounds:", err);
       });
     }
   }
@@ -33,7 +37,7 @@ class PlayableCharacter extends Movement {
   animate() {
     setInterval(() => {
       this.swim_sound.pause();
-      
+
       if (
         this.world.keyboard.RIGHT &&
         this.x < this.world.level.level_max_x_coordinate
@@ -58,7 +62,10 @@ class PlayableCharacter extends Movement {
         this.swim_sound.play();
       }
 
-      if (this.world.keyboard.DOWN && this.y < this.world.level.level_max_y_coordinate) {
+      if (
+        this.world.keyboard.DOWN &&
+        this.y < this.world.level.level_max_y_coordinate
+      ) {
         this.y += this.speed;
         this.swim_sound.play();
       }
@@ -94,14 +101,6 @@ class PlayableCharacter extends Movement {
           this.frameIndex = 0;
         }
       }
-
-      // let i = this.currentIndex % this.IMG_ANIMATION.length;
-      // let path = this.IMG_ANIMATION[this.currentIndex];
-      // this.img = this.imgCache[path];
-      // this.currentIndex++;
-      // if (this.currentIndex >= this.IMG_ANIMATION.length) {
-      //   this.currentIndex = 0;
-      // }
     }, 100);
   }
 }

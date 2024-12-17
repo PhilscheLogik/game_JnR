@@ -1,4 +1,4 @@
-// enemies, foregrounds, backgroundObjects
+// enemies, endboss, foregrounds, backgroundObjects
 let level1 = new Level(
   //enemies
   [
@@ -8,6 +8,11 @@ let level1 = new Level(
     new Fish("../../asset/img/img_sharkie/2_enemy/6_fish/Walk.png", 4),
     new Fishman("../../asset/img/img_sharkie/2_enemy/5_fish_man/Idle.png", 4),
   ],
+  //endboss
+  new Endboss(
+    "../../asset/img/img_sharkie/2_enemy/7_endboss/PNG/Slime2/Idle/Slime2_Idle_direct.png",
+    6
+  ),
 
   //foregrounds
   [

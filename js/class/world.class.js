@@ -2,13 +2,12 @@ class World {
   ctx;
   canvas;
   keyboard;
-  camera_x = 0;
-  camera_y = 0;
+  camera_x = 50;
+  camera_y = 50;
 
-  character = new PlayableCharacter(
-    "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Swim.png",
-    6
-  );
+
+
+  character = new PlayableCharacter();
 
   level = level1;
 
@@ -19,15 +18,15 @@ class World {
   }
 
   // -----------------------------------------------
-  addObjToMapInParts(obj, divisor) {
-    obj.forEach((item) => this.addToMapInParts(item, divisor));
+  addObjToMapInParts(obj, divisor, factor) {
+    obj.forEach((item) => this.addToMapInParts(item, divisor, factor));
   }
 
   // -----------------------------------------------
   addToMapComplete(item) {
     if (item.otherDirection) {
       this.ctx.save();
-      // this.ctx.translate(item.img.width, 0);
+      // this.ctx.translate(item.img.w, 0);
       this.ctx.scale(-1, 1);
       this.ctx.drawImage(item.img, -item.x, item.y, item.w, item.h);
     } else {
@@ -37,10 +36,10 @@ class World {
   }
 
   // -----------------------------------------------
-  addToMapInParts(item, divisor) {
+  addToMapInParts(item, divisor, factor) {
     if (item.otherDirection) {
       this.ctx.save();
-      // this.ctx.translate(item.img.width, 0);
+      // this.ctx.translate(item.img.w, 0);
       this.ctx.scale(-1, 1);
       this.ctx.drawImage(
         item.img,
@@ -50,8 +49,8 @@ class World {
         item.h,
         -item.x - item.w / divisor,
         item.y,
-        item.w / divisor,
-        item.h
+        item.w / divisor * factor,
+        item.h *factor
       );
     } else {
       this.ctx.drawImage(
@@ -62,8 +61,8 @@ class World {
         item.h,
         item.x,
         item.y,
-        item.w / divisor,
-        item.h
+        item.w / divisor * factor,
+        item.h *factor
       );
     }
     this.ctx.restore();
@@ -92,11 +91,14 @@ class World {
     // zeichnet Backgrounds
     this.addObjToMapComplete(this.level.backgroundObjects);
 
-    // zeichnet Player
-    this.addToMapInParts(this.character, 6);
-
     // zeichnet die Feinde
-    this.addObjToMapInParts(this.level.enemies, 4);
+    this.addObjToMapInParts(this.level.enemies, 4, 1.5);
+
+    // zeichnet Endboss
+    this.addToMapInParts(this.level.endboss, 6, 4);
+
+    // zeichnet Player
+    this.addToMapInParts(this.character, 6, 1);
 
     // zeichnet Luftblasen
     this.addObjToMapComplete(this.level.foregrounds);

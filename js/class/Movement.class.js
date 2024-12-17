@@ -22,7 +22,7 @@ class Movement {
     });
   }
 
-  moveToLeft(){
+  moveToLeft() {
     setInterval(() => {
       this.x -= this.speed;
       if (this.x < -50) {
@@ -32,7 +32,7 @@ class Movement {
     }, 100 / 6);
   }
 
-  moveToRight(){
+  moveToRight() {
     setInterval(() => {
       this.x += this.speed;
       if (this.x > 750) {
@@ -42,27 +42,25 @@ class Movement {
     }, 100 / 6);
   }
 
-  moveToUp(){
-    setInterval( () => {
+  moveToUp() {
+    setInterval(() => {
       this.y -= this.speed;
 
       if (this.y < -100) {
-        this.y = 480; 
-        this.x = -100 + Math.random() * 720; 
+        this.y = 480;
+        this.x = -100 + Math.random() * 720;
       }
-    }, 100/6) 
+    }, 100 / 6);
   }
 
-  moveToDown(){
-    setInterval( () => {
+  moveToDown() {
+    setInterval(() => {
       this.y += this.speed;
 
       if (this.y > 500) {
-        this.y = -100; 
-        this.x = -100 + Math.random() * 200; 
+        this.y = -100;
+        this.x = -100 + Math.random() * 200;
       }
-    }, 100/6) 
-  }
-
-
+    }, 100 / 6);
+  }  
 }
