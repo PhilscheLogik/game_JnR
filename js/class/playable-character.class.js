@@ -1,106 +1,166 @@
 class PlayableCharacter extends Movement {
-  // IMG_ANIMATION = [
-  //   "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Idle2.png",
-  //   "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Swim.png",
-  //   "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Swim2.png",
-  // ];
-  // currentIndex = 0;
   frameIndex = 0;
   totalFrames = 6;
   world;
   speed = 3;
-  swim_sound = new Audio("./asset/audio/effects/char/swim.mp3");
+  swim_sound = new Audio("./asset/audio/effects/char/swim2.mp3");
+  hit_sound = new Audio("./asset/audio/effects/actions/hit.mp3");
+  death_sound = new Audio("./asset/audio/effects/actions/hit.mp3");
 
   IMG_SWIM = {
     path: "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Swim.png",
     animationCount: 6,
   };
 
+  IMG_ATTACK = {
+    path: "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Attack3.png",
+    animationCount: 6,
+  };
+
+  IMG_IDLE = {
+    path: "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Idle.png",
+    animationCount: 6,
+  };
+
+  IMG_DEATH = {
+    path: "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Death.png",
+    animationCount: 6,
+  };
+
+  IMG_HURT = {
+    path: "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Hurt6.png",
+    animationCount: 6,
+  };
+
   constructor() {
-    super().loadImage(IMG_SWIM.path);
+    super().loadImage(this.IMG_IDLE.path);
 
-    this.totalFrames = IMG_SWIM.divisor;
+    this.currentState = "IDLE";
+    this.totalFrames = Number(this.IMG_IDLE.animationCount);
 
-    // this.loadImages(this.IMG_ANIMATION);
     this.animate();
   }
 
-  playSwimSound(audio) {
-    if (audio.paused) {
-      audio.currentTime = 0; // Zurücksetzen, wenn pausiert
-      audio.play().catch((err) => {
-        console.error("Fehler beim Abspielen des Sounds:", err);
-      });
+  setState(newState) {
+    if (this.currentState === newState) return;
+    this.currentState = newState;
+    switch (newState) {
+      case "IDLE":
+        this.img.src = this.IMG_IDLE.path;
+        this.totalFrames = this.IMG_IDLE.animationCount;
+        break;
+      case "SWIM":
+        this.img.src = this.IMG_SWIM.path;
+        this.totalFrames = this.IMG_SWIM.animationCount;
+        break;
+      case "ATTACK":
+        this.img.src = this.IMG_ATTACK.path;
+        this.totalFrames = this.IMG_ATTACK.animationCount;
+        break;
+      case "HURT":
+        this.img.src = this.IMG_HURT.path;
+        this.totalFrames = this.IMG_HURT.animationCount;
+        break;
+      case "DEATH":
+        this.img.src = this.IMG_DEATH.path;
+        this.totalFrames = this.IMG_DEATH.animationCount;
+        break;
     }
+    this.frameIndex = 0;
   }
 
+  executeAttack() {
+    if (this.isAttacking) return;
+    this.isAttacking = true;
+    this.hit_sound.play();
+
+    const interval = setInterval(() => {
+      this.frameIndex++;
+      if (this.frameIndex >= this.totalFrames) {
+        clearInterval(interval);
+        this.isAttacking = false;
+        this.hit_sound.pause();
+      }
+    }, 200);
+  }
+
+  moveRight() {
+    this.x += this.speed;
+    this.otherDirection = false;
+    this.swim_sound.play();
+  }
+
+  moveLeft() {
+    this.x -= this.speed;
+    this.otherDirection = true;
+    this.swim_sound.play();
+  }
+
+  moveUp() {
+    this.y -= this.speed;
+    this.swim_sound.play();
+  }
+
+  moveDown() {
+    this.y += this.speed;
+    this.swim_sound.play();
+  }
+
+  //---------------------------------
   animate() {
     setInterval(() => {
       this.swim_sound.pause();
+      // if (this.isAttacking) return;
 
-      if (
+      if (this.isDead()) {
+        this.setState("DEATH");
+        console.log("Tod");
+      } else if (this.isHurt()) {
+        this.setState("HURT");
+        console.log("Aua");
+      } else if (this.world.keyboard.Q) {
+        this.setState("ATTACK");
+        this.executeAttack();
+        return;
+      } else if (
         this.world.keyboard.RIGHT &&
         this.x < this.world.level.level_max_x_coordinate
       ) {
-        this.x += this.speed;
-
-        this.otherDirection = false;
-        this.swim_sound.play();
+        this.setState("SWIM");
+        this.moveRight();
+      } else if (this.world.keyboard.LEFT && this.x > 0) {
+        this.setState("SWIM");
+        this.moveLeft();
+      } else {
+        this.setState("IDLE");
       }
 
-      if (this.world.keyboard.LEFT && this.x > 0) {
-        this.x -= this.speed;
-
-        this.otherDirection = true;
-        this.swim_sound.play();
-      }
-
+      // Kamera
       this.world.camera_x = -this.x;
 
       if (this.world.keyboard.UP && this.y > 0) {
-        this.y -= this.speed;
-        this.swim_sound.play();
+        this.moveUp();
       }
 
       if (
         this.world.keyboard.DOWN &&
         this.y < this.world.level.level_max_y_coordinate
       ) {
-        this.y += this.speed;
-        this.swim_sound.play();
+        this.moveDown();
       }
-
-      // this.world.camera_y = -this.y;
     }, 100 / 6);
 
     setInterval(() => {
-      if (
-        this.world.keyboard.RIGHT ||
-        this.world.keyboard.LEFT ||
-        this.world.keyboard.UP ||
-        this.world.keyboard.DOWN
-      ) {
-        if (this.x < this.world.level.level_max_x_coordinate) {
-          this.x += this.speed;
-        }
-        if (this.x > 0) {
-          this.x -= this.speed;
-        }
+      // Animation
+      this.frameIndex++;
+      if (this.frameIndex >= this.totalFrames) {
+        this.frameIndex = 0;
 
-        if (this.y > 0) {
-          this.y -= this.speed;
-        }
-
-        if (this.y < this.world.level.level_max_y_coordinate) {
-          this.y += this.speed;
-        }
-
-        // Animation
-        this.frameIndex++;
-        if (this.frameIndex >= this.totalFrames) {
-          this.frameIndex = 0;
+        // Nach Abschluss einer Attack-Animation zu Idle wechseln
+        if (this.currentState === "ATTACK") {
+          this.setState("IDLE");
         }
       }
-    }, 100);
+    }, 200);
   }
 }

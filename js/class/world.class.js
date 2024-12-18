@@ -4,11 +4,7 @@ class World {
   keyboard;
   camera_x = 50;
   camera_y = 50;
-
-
-
   character = new PlayableCharacter();
-
   level = level1;
 
   addObjToMapComplete(obj) {
@@ -26,7 +22,6 @@ class World {
   addToMapComplete(item) {
     if (item.otherDirection) {
       this.ctx.save();
-      // this.ctx.translate(item.img.w, 0);
       this.ctx.scale(-1, 1);
       this.ctx.drawImage(item.img, -item.x, item.y, item.w, item.h);
     } else {
@@ -37,34 +32,36 @@ class World {
 
   // -----------------------------------------------
   addToMapInParts(item, divisor, factor) {
+    let x_coordinate = item.x;
+    this.ctx.save();
+
     if (item.otherDirection) {
-      this.ctx.save();
-      // this.ctx.translate(item.img.w, 0);
       this.ctx.scale(-1, 1);
-      this.ctx.drawImage(
-        item.img,
-        (item.w / divisor) * item.frameIndex,
-        0,
-        item.w / divisor,
-        item.h,
-        -item.x - item.w / divisor,
-        item.y,
-        item.w / divisor * factor,
-        item.h *factor
-      );
-    } else {
-      this.ctx.drawImage(
-        item.img,
-        (item.w / divisor) * item.frameIndex,
-        0,
-        item.w / divisor,
-        item.h,
-        item.x,
-        item.y,
-        item.w / divisor * factor,
-        item.h *factor
-      );
+      x_coordinate = -item.x - item.w / divisor;
     }
+
+    this.ctx.drawImage(
+      item.img,
+      (item.w / divisor) * item.frameIndex,
+      0,
+      item.w / divisor,
+      item.h,
+      x_coordinate,
+      item.y,
+      (item.w / divisor) * factor,
+      item.h * factor
+    );
+
+    item.updateBoundingBox(
+      x_coordinate,
+      item.y,
+      (item.w / divisor) * factor,
+      item.h * factor
+    );
+    // console.log(item.boundingBox);
+
+    item.drawRect(this.ctx);
+
     this.ctx.restore();
   }
 
@@ -75,6 +72,20 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
+    this.checkCollisions();
+  }
+
+  checkCollisions() {
+    setInterval(() => {
+      this.level.enemies.forEach((enemy) => {
+        if (this.character.calcCollision(enemy)) {
+          this.character.hit(enemy);          
+        }
+      });
+      if (this.character.calcCollision(this.level.endboss)) {
+        this.character.hit(this.level.endboss);        
+      }
+    }, 500);
   }
 
   setWorld() {
