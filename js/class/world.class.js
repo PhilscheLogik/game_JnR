@@ -6,6 +6,7 @@ class World {
   camera_y = 50;
   character = new PlayableCharacter();
   level = level1;
+  statusBar = new StatusBar();
 
   addObjToMapComplete(obj) {
     obj.forEach((item) => {
@@ -65,6 +66,21 @@ class World {
     this.ctx.restore();
   }
 
+  addToMapStatus(item, divisor, factor) {  
+    
+    this.ctx.drawImage(
+      item.img,
+      (item.w / divisor) * item.frameIndex,
+      0,
+      item.w / divisor,
+      item.h,
+      item.x,
+      item.y,
+      (item.w / divisor) * factor,
+      item.h * factor
+    );       
+  }
+
   /* -----------------------------------------------*/
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -79,11 +95,13 @@ class World {
     setInterval(() => {
       this.level.enemies.forEach((enemy) => {
         if (this.character.calcCollision(enemy)) {
-          this.character.hit(enemy);          
+          this.character.hit(enemy); 
+          this.statusBar.setPercentage(this.character.energy);
         }
       });
       if (this.character.calcCollision(this.level.endboss)) {
-        this.character.hit(this.level.endboss);        
+        this.character.hit(this.level.endboss);  
+        this.statusBar.setPercentage(this.character.energy);      
       }
     }, 500);
   }
@@ -109,10 +127,16 @@ class World {
     this.addToMapInParts(this.level.endboss, 6, 4);
 
     // zeichnet Player
-    this.addToMapInParts(this.character, 6, 1);
+    this.addToMapInParts(this.character, 6, 1.5);
 
     // zeichnet Luftblasen
     this.addObjToMapComplete(this.level.foregrounds);
+
+    this.ctx.translate(-this.camera_x, 0);
+    // status
+    this.addToMapStatus(this.statusBar, 9, 0.8);
+    this.ctx.translate(this.camera_x, 0);
+    
 
     this.ctx.translate(-this.camera_x, 0);
 

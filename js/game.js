@@ -46,6 +46,8 @@ const init = () => {
   world = new World(canvas, keyboard);
   console.log(world);
 
+  
+
 
 
   // let x_c = 2;

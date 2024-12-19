@@ -135,10 +135,7 @@ class PlayableCharacter extends Movement {
         this.setState("IDLE");
       }
 
-      // Kamera
-      this.world.camera_x = -this.x;
-
-      if (this.world.keyboard.UP && this.y > 0) {
+      if (this.world.keyboard.UP && this.y > 50) {
         this.moveUp();
       }
 
@@ -148,6 +145,9 @@ class PlayableCharacter extends Movement {
       ) {
         this.moveDown();
       }
+      // Kamera
+      this.world.camera_x = -this.x + 50;
+      this.world.camera_y = -this.y + 55;
     }, 100 / 6);
 
     setInterval(() => {

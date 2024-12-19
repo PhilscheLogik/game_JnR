@@ -1,24 +1,14 @@
-class Movement {
-  frameIndex = 0;
-  totalFrames = 6;
-
-  x = 10;
-  y = 10;
-  w = 288;
-  h = 48;
-  img = new Image();
-
-  currentIndex = 0;
+class Movement extends DrawableObject {
   speed = 0.5;
   otherDirection = false;
-  boundingBox = { x: 0, y: 0, w: 0, h: 0 };
 
   energy = 100;
   lastHit = 0;
 
-  loadImage(path) {
-    this.img.src = path;
-    this.totalFrames = path.animationCount;
+  boundingBox = { x: 0, y: 0, w: 0, h: 0 };
+
+  updateBoundingBox(x, y, w, h) {
+    this.boundingBox = { x, y, w, h };
   }
 
   moveToLeft() {
@@ -65,24 +55,7 @@ class Movement {
     }, 100 / 6);
   }
 
-  drawRect(ctx) {
-    ctx.beginPath();
-    ctx.lineWdth = "5";
-    ctx.strokeStyle = "blue";
-    ctx.rect(
-      this.boundingBox.x,
-      this.boundingBox.y,
-      this.boundingBox.w,
-      this.boundingBox.h
-    );
-    ctx.stroke();
-  }
-
-  updateBoundingBox(x, y, w, h) {
-    this.boundingBox = { x, y, w, h };
-  }
-
-  calcCollision(other) {    
+  calcCollision(other) {
     return (
       this.x < other.x + other.boundingBox.w &&
       this.x + this.boundingBox.w > other.x &&
@@ -90,7 +63,7 @@ class Movement {
       this.boundingBox.y + this.boundingBox.h > other.boundingBox.y
     );
   }
- 
+
   isDead() {
     return this.energy <= 0;
   }
