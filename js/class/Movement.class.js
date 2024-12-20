@@ -5,6 +5,8 @@ class Movement extends DrawableObject {
   energy = 100;
   lastHit = 0;
 
+  
+
   boundingBox = { x: 0, y: 0, w: 0, h: 0 };
 
   updateBoundingBox(x, y, w, h) {

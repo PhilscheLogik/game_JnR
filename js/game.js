@@ -10,25 +10,24 @@
  */
 
 /** GAME IDEE INGAME EFFECT
- * man könnte eine Variable setzen bei Enemies und Player, damit die 
- * Funktion addToMapInParts(..,.., Faktor) in world den Faktor nicht 
- * mehr benötigt. So könnte man unterschiedliche Werte bei den 
- * Gegner einsetzten, vielleicht auch ein 
+ * man könnte eine Variable setzen bei Enemies und Player, damit die
+ * Funktion addToMapInParts(..,.., Faktor) in world den Faktor nicht
+ * mehr benötigt. So könnte man unterschiedliche Werte bei den
+ * Gegner einsetzten, vielleicht auch ein
  * Item, welches den Endboss entschärft/verkleinert.
  */
 
 /** GAME IDEE NEW ENEMY
- * Man könnte Bodentruppen von oben regnen lassen (sterben 
- * bei Bodenkontakt) - einfach die animate() {} bei der 
+ * Man könnte Bodentruppen von oben regnen lassen (sterben
+ * bei Bodenkontakt) - einfach die animate() {} bei der
  * neuen Klassen überschreiben
- * die Gegnerart schlägt einfach immer verzweifelt xD 
+ * die Gegnerart schlägt einfach immer verzweifelt xD
  */
 
 /** OPTIMIERUNG
- * addToMapComplete() bzw. 
+ * addToMapComplete() bzw.
  * addToMapInParts() optimieren und ggf. auslagern
  */
-
 
 /** Allgemeine Info
  *
@@ -45,10 +44,6 @@ const init = () => {
 
   world = new World(canvas, keyboard);
   console.log(world);
-
-  
-
-
 
   // let x_c = 2;
   // let y_c = 2;
@@ -74,9 +69,6 @@ const init = () => {
   // console.log(`y_c + h_c > y_e: ${y_c + h_c > y_e}`);
   // console.log(`x_c + w_c > w_e: ${x_c + w_c > w_e}`);
   // console.log(`y_c + h_c > h_e: ${y_c + h_c > h_e}`);
-
-
-
 };
 
 document.addEventListener("keydown", (event) => {
@@ -84,39 +76,37 @@ document.addEventListener("keydown", (event) => {
     case "KeyW":
     case "ArrowUp":
       keyboard.UP = true;
-      // console.log("Move Up ON");
       break;
 
     case "KeyA":
     case "ArrowLeft":
       keyboard.LEFT = true;
-      // console.log("Move Left ON");
       break;
 
     case "KeyS":
     case "ArrowDown":
       keyboard.DOWN = true;
-      // console.log("Move Down ON");
       break;
 
     case "KeyD":
     case "ArrowRight":
       keyboard.RIGHT = true;
-      // console.log("Move Right ON");
       break;
 
     case "KeyQ":
       keyboard.Q = true;
-      // console.log("Special Action (Q) ON");
+      break;
+
+    case "KeyE":
+      keyboard.E = true;
       break;
 
     case "Space":
       keyboard.SPACE = true;
-      // console.log("Jump or Action (Space) ON");
       break;
 
     default:
-      console.log(`Unmapped key: ${event.code}`);
+      // console.log(`Unmapped key: ${event.code}`);
       break;
   }
 });
@@ -126,39 +116,38 @@ document.addEventListener("keyup", (event) => {
     case "KeyW":
     case "ArrowUp":
       keyboard.UP = false;
-      // console.log("Move Up OFF");
+
       break;
 
     case "KeyA":
     case "ArrowLeft":
       keyboard.LEFT = false;
-      // console.log("Move Left OFF");
       break;
 
     case "KeyS":
     case "ArrowDown":
       keyboard.DOWN = false;
-      // console.log("Move Down OFF");
       break;
 
     case "KeyD":
     case "ArrowRight":
       keyboard.RIGHT = false;
-      // console.log("Move Right OFF");
       break;
 
     case "KeyQ":
       keyboard.Q = false;
-      // console.log("Special Action (Q) OFF");
+      break;
+
+    case "KeyE":
+      keyboard.E = false;
       break;
 
     case "Space":
       keyboard.SPACE = false;
-      // console.log("Jump or Action (Space) OFF");
       break;
 
     default:
-      console.log(`Unmapped key: ${event.code}`);
+      // console.log(`Unmapped key: ${event.code}`);
       break;
   }
 });

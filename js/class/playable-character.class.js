@@ -32,6 +32,11 @@ class PlayableCharacter extends Movement {
     animationCount: 6,
   };
 
+  IMG_SHOOT = {
+    path: "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Hurt6.png",
+    animationCount: 6,
+  };
+
   constructor() {
     super().loadImage(this.IMG_IDLE.path);
 
@@ -56,6 +61,10 @@ class PlayableCharacter extends Movement {
       case "ATTACK":
         this.img.src = this.IMG_ATTACK.path;
         this.totalFrames = this.IMG_ATTACK.animationCount;
+        break;
+        case "SHOOT":
+        this.img.src = this.IMG_SHOOT.path;
+        this.totalFrames = this.IMG_SHOOT.animationCount;
         break;
       case "HURT":
         this.img.src = this.IMG_HURT.path;

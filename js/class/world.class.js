@@ -7,6 +7,8 @@ class World {
   character = new PlayableCharacter();
   level = level1;
   statusBar = new StatusBar();
+  bubbleAttack = [new ThrowableObject()];
+
 
   addObjToMapComplete(obj) {
     obj.forEach((item) => {
@@ -59,7 +61,6 @@ class World {
       (item.w / divisor) * factor,
       item.h * factor
     );
-    // console.log(item.boundingBox);
 
     item.drawRect(this.ctx);
 
@@ -129,14 +130,16 @@ class World {
     // zeichnet Player
     this.addToMapInParts(this.character, 6, 1.5);
 
+    // BubbleAttack 
+    this.addObjToMapComplete(this.bubbleAttack);
+
     // zeichnet Luftblasen
     this.addObjToMapComplete(this.level.foregrounds);
 
-    this.ctx.translate(-this.camera_x, 0);
     // status
+    this.ctx.translate(-this.camera_x, 0);    
     this.addToMapStatus(this.statusBar, 9, 0.8);
-    this.ctx.translate(this.camera_x, 0);
-    
+    this.ctx.translate(this.camera_x, 0);    
 
     this.ctx.translate(-this.camera_x, 0);
 
