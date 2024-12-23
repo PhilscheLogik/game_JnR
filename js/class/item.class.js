@@ -1,0 +1,4 @@
+class PlayableCharacter extends Movement {
+
+    
+}

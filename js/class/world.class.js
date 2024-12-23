@@ -6,9 +6,10 @@ class World {
   camera_y = 50;
   character = new PlayableCharacter();
   level = level1;
-  statusBar = new StatusBar();
+  statusBar = new StatusBar(1);
+  coinBar = new StatusBar(2);
+  muniBar = new StatusBar(3);
   bubbleAttack = [new ThrowableObject()];
-
 
   addObjToMapComplete(obj) {
     obj.forEach((item) => {
@@ -67,8 +68,7 @@ class World {
     this.ctx.restore();
   }
 
-  addToMapStatus(item, divisor, factor) {  
-    
+  addToMapStatus(item, divisor, factor) {
     this.ctx.drawImage(
       item.img,
       (item.w / divisor) * item.frameIndex,
@@ -79,7 +79,7 @@ class World {
       item.y,
       (item.w / divisor) * factor,
       item.h * factor
-    );       
+    );
   }
 
   /* -----------------------------------------------*/
@@ -96,13 +96,16 @@ class World {
     setInterval(() => {
       this.level.enemies.forEach((enemy) => {
         if (this.character.calcCollision(enemy)) {
-          this.character.hit(enemy); 
+          this.character.hit(enemy);
           this.statusBar.setPercentage(this.character.energy);
+          this.muniBar.setPercentage(this.character.energy);
+          this.coinBar.setPercentage(this.character.energy);
+
         }
       });
       if (this.character.calcCollision(this.level.endboss)) {
-        this.character.hit(this.level.endboss);  
-        this.statusBar.setPercentage(this.character.energy);      
+        this.character.hit(this.level.endboss);
+        this.statusBar.setPercentage(this.character.energy);
       }
     }, 500);
   }
@@ -125,21 +128,23 @@ class World {
     this.addObjToMapInParts(this.level.enemies, 4, 1.5);
 
     // zeichnet Endboss
-    this.addToMapInParts(this.level.endboss, 6, 4);
+    this.addToMapInParts(this.level.endboss, 4, 4);
 
     // zeichnet Player
     this.addToMapInParts(this.character, 6, 1.5);
 
-    // BubbleAttack 
+    // BubbleAttack
     this.addObjToMapComplete(this.bubbleAttack);
 
     // zeichnet Luftblasen
     this.addObjToMapComplete(this.level.foregrounds);
 
     // status
-    this.ctx.translate(-this.camera_x, 0);    
+    this.ctx.translate(-this.camera_x, 0);
     this.addToMapStatus(this.statusBar, 9, 0.8);
-    this.ctx.translate(this.camera_x, 0);    
+    this.addToMapStatus(this.coinBar, 9, 0.8);
+    this.addToMapStatus(this.muniBar, 9, 0.8);
+    this.ctx.translate(this.camera_x, 0);
 
     this.ctx.translate(-this.camera_x, 0);
 

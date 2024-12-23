@@ -19,8 +19,8 @@
       type="image/x-icon"
     />
   </head>
-
-  <body id="body-container" onload="init()">
+  <!-- onload="init()" -->
+  <body id="body-container" onload="createStartMenu()">
     <!-- header -->
     <header>
       <img src="#" alt="Logo" />
@@ -36,12 +36,12 @@
     </header>
     <!-- main -->
     <main>
-      <!-- <img
-          id="burger-menue"
-          src="./asset/img/img_sharkie/1.Sharkie/1.IDLE/1.png"
-          alt="burger Icon"
-        /> -->
-      <canvas id="canvas" style="width: 720px; height: 480px"></canvas>
+      <canvas
+        id="canvas"
+        class="d_none"
+        style="width: 720px; height: 480px"
+      ></canvas>
+      <section id="menu-section"></section>
     </main>
 
     <!-- footbar -->
@@ -70,12 +70,12 @@
 
   <script src="./js/class/movement.class.js" defer="defer"></script>
 
-  <script src="./js/class/throwable-object.class.js" defer="defer"></script> 
+  <script src="./js/class/throwable-object.class.js" defer="defer"></script>
   <script src="./js/class/playable-character.class.js" defer="defer"></script>
   <script src="./js/class/enemy.class.js" defer="defer"></script>
   <script src="./js/class/fish.class.js" defer="defer"></script>
   <script src="./js/class/fishman.class.js" defer="defer"></script>
-  <script src="./js/class/endboss.class.js" defer="defer"></script>  
+  <script src="./js/class/endboss.class.js" defer="defer"></script>
 
   <script src="./js/class/bubble.class.js" defer="defer"></script>
   <script src="./js/class/background-object.class.js" defer="defer"></script>

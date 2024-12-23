@@ -1,4 +1,9 @@
 // enemies, endboss, foregrounds, backgroundObjects
+let img_f = 2;
+let img_w = 576*img_f;
+let imh_h = 324*img_f;
+
+
 let level1 = new Level(
   //enemies
   [
@@ -10,9 +15,14 @@ let level1 = new Level(
   ],
   //endboss
   new Endboss(
-    "../../asset/img/img_sharkie/2_enemy/7_endboss/PNG/Slime2/Idle/Slime2_Idle_direct.png",
-    6
+    "../../asset/img/img_sharkie/2_enemy/7_endboss/3 Big bloated/Big_bloated_idle.png",
+    4
   ),
+  // new Endboss(
+  //   "../../asset/img/img_sharkie/2_enemy/7_endboss/PNG/Slime2/Idle/Slime2_Idle_direct.png",
+  //   6
+  // ),
+
 
   //foregrounds
   [

@@ -43,33 +43,11 @@ const init = () => {
   canvas.height = 480;
 
   world = new World(canvas, keyboard);
-  console.log(world);
-
-  // let x_c = 2;
-  // let y_c = 2;
-  // let w_c = 6;
-  // let h_c = 4;
-
-  // let x_e = 0
-  // let y_e = 0;
-  // let w_e = 3;
-  // let h_e = 3;
-
-  // console.log(`(x_c:${x_c}| y_c:${y_c}), (w_c:${w_c}| h_c:${h_c})`);
-  // console.log(`(x_e:${x_e}| y_e:${y_e}), (w_e:${w_e}| h_e:${h_e})`);
-  // console.log();
-  // console.log('---------- Junus ----------');
-  // console.log(`x_c + w_c > x_e: ${x_c + w_c > x_e}`);
-  // console.log(`y_c + h_c > y_e: ${y_c + h_c > y_e}`);
-  // console.log(`x_c < x_e: ${x_c < x_e}`);
-  // console.log(`y_c < y_e + h_e: ${y_c < y_e + h_e}`);
-  // console.log();
-  // console.log('---------- Meine ----------');
-  // console.log(`x_c + w_c > x_e: ${x_c + w_c > x_e}`);
-  // console.log(`y_c + h_c > y_e: ${y_c + h_c > y_e}`);
-  // console.log(`x_c + w_c > w_e: ${x_c + w_c > w_e}`);
-  // console.log(`y_c + h_c > h_e: ${y_c + h_c > h_e}`);
+  // console.log(world);  
 };
+
+
+
 
 document.addEventListener("keydown", (event) => {
   switch (event.code) {

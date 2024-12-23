@@ -62,7 +62,7 @@ class PlayableCharacter extends Movement {
         this.img.src = this.IMG_ATTACK.path;
         this.totalFrames = this.IMG_ATTACK.animationCount;
         break;
-        case "SHOOT":
+      case "SHOOT":
         this.img.src = this.IMG_SHOOT.path;
         this.totalFrames = this.IMG_SHOOT.animationCount;
         break;
@@ -117,13 +117,20 @@ class PlayableCharacter extends Movement {
 
   //---------------------------------
   animate() {
-    setInterval(() => {
+    let stateInterval = setInterval(() => {
       this.swim_sound.pause();
       // if (this.isAttacking) return;
 
       if (this.isDead()) {
         this.setState("DEATH");
+        clearInterval(stateInterval);
         console.log("Tod");
+        setTimeout(() => {
+          toggleClass("canvas", "d_none");
+          toggleClass("menu-section", "d_none");
+          createGameOver();
+        }, 1000);
+        // setTimeout(createGameOver, 5000);
       } else if (this.isHurt()) {
         this.setState("HURT");
         console.log("Aua");
@@ -159,10 +166,16 @@ class PlayableCharacter extends Movement {
       this.world.camera_y = -this.y + 55;
     }, 100 / 6);
 
-    setInterval(() => {
+    let animationIntervall = setInterval(() => {
       // Animation
       this.frameIndex++;
-      if (this.frameIndex >= this.totalFrames) {
+
+      if (
+        this.currentState === "DEATH" &&
+        this.frameIndex >= this.totalFrames
+      ) {
+        clearInterval(animationIntervall);
+      } else if (this.frameIndex >= this.totalFrames) {
         this.frameIndex = 0;
 
         // Nach Abschluss einer Attack-Animation zu Idle wechseln
