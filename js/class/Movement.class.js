@@ -2,10 +2,8 @@ class Movement extends DrawableObject {
   speed = 0.5;
   otherDirection = false;
 
-  energy = 100;
-  lastHit = 0;
-
-  
+  energy = 80;
+  lastHit = 0;  
 
   boundingBox = { x: 0, y: 0, w: 0, h: 0 };
 
@@ -73,10 +71,10 @@ class Movement extends DrawableObject {
   hit(obj) {
     if (obj instanceof Endboss) {
       console.log("Treffer Endboss");
-      this.energy -= 10;
+      this.energy -= 20;
     } else {
       console.log("Treffer Mobs");
-      this.energy -= 5;
+      this.energy -= 10;
     }
 
     if (this.energy < 0) {

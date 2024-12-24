@@ -13,18 +13,12 @@ const createStartMenu = () => {
  * Rendert den Warenkorb, nutzt dazu createCartItems()(src=script.js).
  * @returns Gibt dazu benötigten HTML Code zurück.
  */
-// # Hier muss noch Text stehen.
-
-{/* <button
-      onclick="init(), toggleClass('menu-section','d_none'), toggleClass('canvas','d_none')"
-    ></button> */}
-
 const renderStartMenu = () => `
 <div>
   <h2 id="h2-title" >The Sunken Ship</h2>  
   <div>
     <button
-      onclick="createGameOver();"
+      onclick="init(), toggleClass('menu-section','d_none'), toggleClass('canvas','d_none')"
     >
       Game Start
     </button>
@@ -54,11 +48,7 @@ const renderHowToPlay = () => `
     <p><span class="key"> </span> <span>Mit der Taste 'Leertaste' kann man #.</span></p>
   </section>
 
-  <div>
-    <button
-      onclick="init(), toggleClass('menu-section','d_none'), toggleClass('canvas','d_none')"
-    >Game Start
-    </button>
+  <div>    
     <button
       onclick="createStartMenu()"
     >
@@ -78,6 +68,31 @@ const renderGameOver = () => `
   <h2 id="h2-fail">GAME OVER</h2>
 
   <span>Niederlage fortsetzen?</span>
+  <div>
+    <button
+      onclick="init(), toggleClass('menu-section','d_none'), toggleClass('canvas','d_none')"
+    >
+    Ja 
+    </button>
+    <button
+      onclick="createStartMenu()"
+    >
+      Zurück
+    </button>
+  </div>
+  ${renderBubbleMenu()}  
+</div>`;
+
+const createWinScreen = () => {
+  let contentRef = document.getElementById("menu-section");
+  contentRef.innerHTML = renderWinScreen();
+};
+
+const renderWinScreen = () => `
+<div class="win-overlay"> 
+  <h2 id="h2-win">WIN</h2>
+
+  <span>Nochmal?</span>
   <div>
     <button
       onclick="init(), toggleClass('menu-section','d_none'), toggleClass('canvas','d_none')"

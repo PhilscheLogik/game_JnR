@@ -46,9 +46,6 @@ const init = () => {
   // console.log(world);  
 };
 
-
-
-
 document.addEventListener("keydown", (event) => {
   switch (event.code) {
     case "KeyW":

@@ -4,7 +4,7 @@ class ThrowableObject extends Movement {
   y_start= -50;  
 
   IMG_BUBBLE =
-    "../../asset/img/img_sharkie/1_sharkie/weapon/effects/bubble_b2_transparent.png";
+    "../../asset/img/art/7_effects/bubble_b2_transparent.png";
 
   constructor() {
     super().loadImage(this.IMG_BUBBLE);
@@ -17,9 +17,7 @@ class ThrowableObject extends Movement {
 
     const interval = setInterval(() => {
         this.x += 2;
-        this.y -= Math.pow(0.5, 2); 
-
-        
+        this.y -= Math.pow(0.5, 2);         
         if (
             this.x > 1500 || this.y > 550 || 
             this.x < -100 || this.y < -100

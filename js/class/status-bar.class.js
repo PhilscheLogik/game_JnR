@@ -5,7 +5,7 @@ class StatusBar extends DrawableObject {
   otherDirection = false;  
 
   IMG_LP_BAR = {
-    path: "../../asset/img/img_sharkie/4_ui/status_bar/lp2_bar.png",
+    path: "../../asset/img/art/4_ui/status_bar/lp2_bar.png",
     animationCount: 9,
     x: 5,
     y: 5,
@@ -14,7 +14,7 @@ class StatusBar extends DrawableObject {
   };
 
   IMG_COIN_BAR = {
-    path: "../../asset/img/img_sharkie/4_ui/status_bar/plasma_y_bar.png",
+    path: "../../asset/img/art/4_ui/status_bar/plasma_y_bar.png",
     animationCount: 9,
     x: 5,
     y: 50,
@@ -23,7 +23,7 @@ class StatusBar extends DrawableObject {
   };
 
   IMG_MUNI_BAR = {
-    path: "../../asset/img/img_sharkie/4_ui/status_bar/plasma_b_bar.png",
+    path: "../../asset/img/art/4_ui/status_bar/plasma_b_bar.png",
     animationCount: 9,
     x: 25,
     y: 50,
@@ -64,28 +64,28 @@ class StatusBar extends DrawableObject {
   }
 
   resolveImageIndex() {
-    if (this.percentage == 100) {
+    if (this.percentage == 80) {
       this.frameIndex = 0;
       console.log(this.frameIndex, this.percentage);
-    } else if (this.percentage > 87.5) {
+    } else if (this.percentage >= 70) {
       this.frameIndex = 1;
       console.log(this.frameIndex, this.percentage);
-    } else if (this.percentage > 75) {
+    } else if (this.percentage >= 60) {
       this.frameIndex = 2;
       console.log(this.frameIndex, this.percentage);
-    } else if (this.percentage > 62.5) {
+    } else if (this.percentage >= 50) {
       this.frameIndex = 3;
       console.log(this.frameIndex, this.percentage);
-    } else if (this.percentage > 50) {
+    } else if (this.percentage >= 40) {
       this.frameIndex = 4;
       console.log(this.frameIndex, this.percentage);
-    } else if (this.percentage > 37.5) {
+    } else if (this.percentage >= 30) {
       this.frameIndex = 5;
       console.log(this.frameIndex, this.percentage);
-    } else if (this.percentage > 25) {
+    } else if (this.percentage >= 20) {
       this.frameIndex = 6;
       console.log(this.frameIndex, this.percentage);
-    } else if (this.percentage > 12.5) {
+    } else if (this.percentage >= 10) {
       this.frameIndex = 7;
       console.log(this.frameIndex, this.percentage);
     } else if (this.percentage == 0) {

@@ -92,6 +92,7 @@ class World {
     this.checkCollisions();
   }
 
+  
   checkCollisions() {
     setInterval(() => {
       this.level.enemies.forEach((enemy) => {

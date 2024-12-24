@@ -5,35 +5,35 @@ class PlayableCharacter extends Movement {
   speed = 3;
   swim_sound = new Audio("./asset/audio/effects/char/swim2.mp3");
   hit_sound = new Audio("./asset/audio/effects/actions/hit.mp3");
-  death_sound = new Audio("./asset/audio/effects/actions/hit.mp3");
+  death_sound = new Audio("./asset/audio/effects/enemies/sinister_laugh.mp3");
 
   IMG_SWIM = {
-    path: "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Swim.png",
+    path: "../../asset/img/art/1_character/01_steam_man/Swim.png",
     animationCount: 6,
   };
 
   IMG_ATTACK = {
-    path: "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Attack3.png",
+    path: "../../asset/img/art/1_character/01_steam_man/Attack3.png",
     animationCount: 6,
   };
 
   IMG_IDLE = {
-    path: "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Idle.png",
+    path: "../../asset/img/art/1_character/01_steam_man/Idle.png",
     animationCount: 6,
   };
 
   IMG_DEATH = {
-    path: "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Death.png",
+    path: "../../asset/img/art/1_character/01_steam_man/Death.png",
     animationCount: 6,
   };
 
   IMG_HURT = {
-    path: "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Hurt6.png",
+    path: "../../asset/img/art/1_character/01_steam_man/Hurt6.png",
     animationCount: 6,
   };
 
   IMG_SHOOT = {
-    path: "../../asset/img/img_sharkie/1_sharkie/10_steam_man/Hurt6.png",
+    path: "../../asset/img/art/1_character/01_steam_man/Hurt6.png",
     animationCount: 6,
   };
 
@@ -123,20 +123,23 @@ class PlayableCharacter extends Movement {
 
       if (this.isDead()) {
         this.setState("DEATH");
+        this.death_sound.play();
         clearInterval(stateInterval);
+        
         console.log("Tod");
         setTimeout(() => {
           toggleClass("canvas", "d_none");
           toggleClass("menu-section", "d_none");
           createGameOver();
         }, 1000);
-        // setTimeout(createGameOver, 5000);
       } else if (this.isHurt()) {
         this.setState("HURT");
+        setTimeout(() => {}, 1000);
         console.log("Aua");
       } else if (this.world.keyboard.Q) {
         this.setState("ATTACK");
         this.executeAttack();
+
         return;
       } else if (
         this.world.keyboard.RIGHT &&
