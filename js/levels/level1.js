@@ -1,8 +1,7 @@
 // enemies, endboss, foregrounds, backgroundObjects
 let img_f = 2;
-let img_w = 576*img_f;
-let imh_h = 324*img_f;
-
+let img_w = 576 * img_f;
+let imh_h = 324 * img_f;
 
 let level1 = new Level(
   //enemies
@@ -129,5 +128,11 @@ let level1 = new Level(
       720,
       480
     ),
-  ]
+  ],
+
+  // ammunitions
+  [new Ammunition(), new Ammunition()],
+
+  // coins
+  [new Coin(), new Coin()],
 );

@@ -142,6 +142,12 @@ class World {
     // zeichnet Endboss
     this.addToMapInParts(this.level.endboss, 4, 4);
 
+    // zeichnet Muni
+    this.addObjToMapInParts(this.level.ammunitions, 5, 0.5);
+
+     // zeichnet Coins
+     this.addObjToMapInParts(this.level.coins, 8, 0.5);
+
     // zeichnet Player
     this.addToMapInParts(this.character, 6, 1.5);
 
