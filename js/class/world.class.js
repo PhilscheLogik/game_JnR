@@ -9,7 +9,7 @@ class World {
   statusBar = new StatusBar(1);
   coinBar = new StatusBar(2);
   muniBar = new StatusBar(3);
-  bubbleAttack = [new ThrowableObject()];
+  bubbleAttack = [];
 
   addObjToMapComplete(obj) {
     obj.forEach((item) => {
@@ -89,26 +89,37 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
-    this.checkCollisions();
+    this.run();
   }
 
-  
-  checkCollisions() {
+  run() {
     setInterval(() => {
-      this.level.enemies.forEach((enemy) => {
-        if (this.character.calcCollision(enemy)) {
-          this.character.hit(enemy);
-          this.statusBar.setPercentage(this.character.energy);
-          this.muniBar.setPercentage(this.character.energy);
-          this.coinBar.setPercentage(this.character.energy);
-
-        }
-      });
-      if (this.character.calcCollision(this.level.endboss)) {
-        this.character.hit(this.level.endboss);
-        this.statusBar.setPercentage(this.character.energy);
-      }
+      this.checkCollisionsFoes();
+      this.checkThrow();
     }, 500);
+  }
+
+  checkThrow(){
+    if(this.keyboard.Q){
+      let bubble = new ThrowableObject(this.character.x, this.character.y)
+      this.bubbleAttack.push(bubble)
+    }
+  }
+
+  checkCollisionsFoes() {
+    this.level.enemies.forEach((enemy) => {
+      this.isCollisionHitPlayer(enemy);
+    });
+    this.isCollisionHitPlayer(this.level.endboss);
+  }
+
+  isCollisionHitPlayer(foe) {
+    if (this.character.calcCollision(foe)) {
+      this.character.hit(foe);
+      this.statusBar.setPercentage(this.character.energy);
+      this.muniBar.setPercentage(this.character.energy);
+      this.coinBar.setPercentage(this.character.energy);
+    }
   }
 
   setWorld() {

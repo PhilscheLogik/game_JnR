@@ -6,14 +6,14 @@ class ThrowableObject extends Movement {
   IMG_BUBBLE =
     "../../asset/img/art/7_effects/bubble_b2_transparent.png";
 
-  constructor() {
+  constructor(x,y) {
     super().loadImage(this.IMG_BUBBLE);
-    this.throw(150,150);
+    this.throw(x,y);
   }
 
   throw(x,y){
-    this.x = x;
-    this.y = y;
+    this.x = x+50;
+    this.y = y+10;
 
     const interval = setInterval(() => {
         this.x += 2;
