@@ -131,8 +131,8 @@ let level1 = new Level(
   ],
 
   // ammunitions
-  [new Ammunition(), new Ammunition(), new Ammunition()],
+  [new Ammunition(), new Ammunition()],
 
   // coins
-  [new Coin(), new Coin(), new Coin(), new Coin(), new Coin()],
+  [new Coin(), new Coin(), new Coin(), new Coin()],
 );

@@ -6,9 +6,11 @@ class ThrowableObject extends Movement {
   IMG_BUBBLE =
     "../../asset/img/art/7_effects/bubble_b2_transparent.png";
 
-  constructor(x,y) {
+  constructor(x,y, divisor) {
     super().loadImage(this.IMG_BUBBLE);
+    this.totalFrames = divisor; 
     this.throw(x,y);
+     
   }
 
   throw(x,y){
@@ -17,14 +19,7 @@ class ThrowableObject extends Movement {
 
     const interval = setInterval(() => {
         this.x += 2;
-        this.y -= Math.pow(0.5, 2);         
-        if (
-            this.x > 1500 || this.y > 550 || 
-            this.x < -100 || this.y < -100
-        ) {
-            clearInterval(interval);
-            console.log("Objekt nicht mehr sichtbar, Intervall gestoppt");
-        }
+        this.y -= Math.pow(0.5, 2);        
     }, 1000 / 60);
 
   }

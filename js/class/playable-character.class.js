@@ -125,7 +125,7 @@ class PlayableCharacter extends Movement {
         this.setState("DEATH");
         this.death_sound.play();
         clearInterval(stateInterval);
-        
+
         console.log("Tod");
         setTimeout(() => {
           toggleClass("canvas", "d_none");
@@ -139,7 +139,6 @@ class PlayableCharacter extends Movement {
       } else if (this.world.keyboard.Q) {
         this.setState("ATTACK");
         this.executeAttack();
-
         return;
       } else if (
         this.world.keyboard.RIGHT &&

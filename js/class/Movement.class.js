@@ -74,17 +74,9 @@ class Movement extends DrawableObject {
     if (obj instanceof Endboss) {
       console.log("Treffer Endboss");
       this.energy -= 20;
-    } else if(obj instanceof Enemy){
+    } else if (obj instanceof Enemy) {
       console.log("Treffer Mobs");
       this.energy -= 10;
-    }
-
-    if (obj instanceof Ammunition) {
-      console.log("Muni gefunden");
-      this.magazine += 30;
-    } else if(obj instanceof Coin){
-      console.log("Geld, Geld, Geld");
-      this.coinCount += 30;
     }
 
     if (this.energy < 0) {
@@ -93,24 +85,35 @@ class Movement extends DrawableObject {
       this.lastHit = new Date().getTime();
     }
 
-    console.log(this.energy);
+    console.log("Energie", this.energy);
   }
 
-  pickUp(obj) {   
-
+  pickUp(obj) {
     if (obj instanceof Ammunition) {
-      console.log("Muni gefunden");
-      this.magazine += 30;
-    } else if(obj instanceof Coin){
-      console.log("Geld, Geld, Geld");
-      this.coinCount += 30;
+      this.magazine += 40;
+      console.log("Muni", this.magazine);
+    } else if (obj instanceof Coin) {
+      this.coinCount += 20;
+      console.log("Coins", this.coinCount);
     }
-    console.log(this.magazine, this.coinCount);
   }
 
   isHurt() {
     let timepassed = new Date().getTime() - this.lastHit;
     timepassed = timepassed / 1000;
     return timepassed < 2;
+  }
+
+  dmg(obj) {
+    if (obj instanceof ThrowableObject) {
+      console.log("Bubble Treffer");
+      this.energy -= 80;
+    } 
+    
+    if (this.energy < 0) {
+      this.energy = 0;
+    } else {
+      this.lastHit = new Date().getTime();
+    }
   }
 }

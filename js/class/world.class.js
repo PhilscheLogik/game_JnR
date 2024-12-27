@@ -7,12 +7,13 @@ class World {
   character = new PlayableCharacter();
   level = level1;
   statusBar = new StatusBar(1);
-  muniBar = new StatusBar(2);
-  coinBar = new StatusBar(3);
+  coinBar = new StatusBar(2);
+  muniBar = new StatusBar(3);
 
   pick_up_sound = new Audio(
     "./asset/audio/effects/actions/power_up_pickup.mp3"
   );
+  dmg_sound = new Audio("./asset/audio/effects/enemies/damage_enemy.mp3");
 
   bubbleAttack = [];
 
@@ -102,13 +103,41 @@ class World {
       this.checkCollisionsFoes();
       this.checkCollisionsItems();
       this.checkThrow();
+      this.checkBubbleAttack();
     }, 500);
+  }
+
+  checkBubbleAttack() {
+    this.level.enemies.forEach((enemy) => {
+      this.isCollisionBubble(enemy);
+    });
+  }
+
+  isCollisionBubble(obj) {
+    console.log("---------------------");  
+    this.bubbleAttack.forEach((bubble, i) => { 
+      if (bubble.calcCollision(obj)) {
+        obj.dmg(bubble);
+        this.bubbleAttack.splice(i, 1);
+      }
+      if (
+        bubble.x > 1500 ||
+        bubble.y > 550 ||
+        bubble.x < -100 ||
+        bubble.y < -100
+      ) {
+        this.bubbleAttack.splice(i, 1);
+      }
+    });
   }
 
   checkThrow() {
     if (this.keyboard.Q && this.character.magazine > 0) {
-      let bubble = new ThrowableObject(this.character.x, this.character.y);
+      let bubble = new ThrowableObject(this.character.x, this.character.y, 1);
       this.bubbleAttack.push(bubble);
+      this.character.magazine -= 10;
+      this.muniBar.setPercentageItem(this.character.magazine);
+      this.coinBar.setPercentageItem(this.character.coinCount);
     }
   }
 
@@ -138,13 +167,15 @@ class World {
   isCollisionPickUpPlayer(obj, i) {
     if (this.character.calcCollision(obj)) {
       this.character.pickUp(obj);
-      this.muniBar.setPercentageItem(this.character.coinCount);
-      this.coinBar.setPercentageItem(this.character.magazine);
+      this.muniBar.setPercentageItem(this.character.magazine);
+      this.coinBar.setPercentageItem(this.character.coinCount);
       if (obj instanceof Coin) {
         this.level.coins.splice(i, 1);
+        console.log(this.coinBar);
       }
       if (obj instanceof Ammunition) {
         this.level.ammunitions.splice(i, 1);
+        console.log(this.muniBar);
       }
       this.pick_up_sound.play();
     }
@@ -180,7 +211,7 @@ class World {
     this.addToMapInParts(this.character, 6, 1.5);
 
     // BubbleAttack
-    this.addObjToMapComplete(this.bubbleAttack);
+    this.addObjToMapInParts(this.bubbleAttack,1,1);
 
     // zeichnet Luftblasen
     this.addObjToMapComplete(this.level.foregrounds);

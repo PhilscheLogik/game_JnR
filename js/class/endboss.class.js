@@ -2,16 +2,14 @@ class Endboss extends Enemy {
   frameIndex = 0;
   w = 288;
   h = 72;
+  energy = 240;
 
   constructor(path, divisor) {
-    super().loadImage(path);    
-
-    this.totalFrames = divisor;
+    super(path,divisor)
 
     this.x = 1000;
     this.y = 200;
     
-    this.animate();
   }
 
   animate() {

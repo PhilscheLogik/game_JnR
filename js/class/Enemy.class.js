@@ -1,14 +1,16 @@
 class Enemy extends Movement {
   frameIndex = 0;
-  totalFrames = 6;
-  speed = 1;
+  totalFrames = 6;  
   w = 192;
 
-  constructor() {
-    super().loadImage("../../asset/img/img_sharkie/2_enemy/6_fish/Idle.png");
-    this.x = 150 + Math.random() * 100;    
+  constructor(path, divisor) {
+    super().loadImage(path);
+    this.x = 150 + Math.random() * 500;
+    this.y = 150 + Math.random() * 200;
+    this.totalFrames = divisor;     
 
     this.speed = 0.5 + Math.random() * 2;
+    this.animate();
   }
 
   animate() {

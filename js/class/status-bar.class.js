@@ -45,8 +45,7 @@ class StatusBar extends DrawableObject {
     }
   }
 
-  initImage(obj){
-    
+  initImage(obj){    
       this.loadImage(obj.path);
       this.totalFrames = obj.animationCount;
       this.x = obj.x;
@@ -95,13 +94,13 @@ class StatusBar extends DrawableObject {
   setPercentageItem(percentage) {
     this.percentage = percentage;
     this.resolveImageIndexItem();
-    console.log(this.percentage);   
   }
 
   resolveImageIndexItem() {
     
+    console.log('_______ Percentage and FrameIndex_______');
     if (this.percentage >= 80) {
-      this.frameIndex = 8;
+      this.frameIndex = 8;            
       console.log(this.frameIndex, this.percentage);
     } else if (this.percentage >= 70) {
       this.frameIndex = 7;
