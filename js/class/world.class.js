@@ -7,8 +7,13 @@ class World {
   character = new PlayableCharacter();
   level = level1;
   statusBar = new StatusBar(1);
-  coinBar = new StatusBar(2);
-  muniBar = new StatusBar(3);
+  muniBar = new StatusBar(2);
+  coinBar = new StatusBar(3);
+
+  pick_up_sound = new Audio(
+    "./asset/audio/effects/actions/power_up_pickup.mp3"
+  );
+
   bubbleAttack = [];
 
   addObjToMapComplete(obj) {
@@ -95,14 +100,15 @@ class World {
   run() {
     setInterval(() => {
       this.checkCollisionsFoes();
+      this.checkCollisionsItems();
       this.checkThrow();
     }, 500);
   }
 
-  checkThrow(){
-    if(this.keyboard.Q){
-      let bubble = new ThrowableObject(this.character.x, this.character.y)
-      this.bubbleAttack.push(bubble)
+  checkThrow() {
+    if (this.keyboard.Q && this.character.magazine > 0) {
+      let bubble = new ThrowableObject(this.character.x, this.character.y);
+      this.bubbleAttack.push(bubble);
     }
   }
 
@@ -113,12 +119,34 @@ class World {
     this.isCollisionHitPlayer(this.level.endboss);
   }
 
-  isCollisionHitPlayer(foe) {
-    if (this.character.calcCollision(foe)) {
-      this.character.hit(foe);
-      this.statusBar.setPercentage(this.character.energy);
-      this.muniBar.setPercentage(this.character.energy);
-      this.coinBar.setPercentage(this.character.energy);
+  isCollisionHitPlayer(obj) {
+    if (this.character.calcCollision(obj)) {
+      this.character.hit(obj);
+      this.statusBar.setPercentageEnergy(this.character.energy);
+    }
+  }
+
+  checkCollisionsItems() {
+    this.level.coins.forEach((coin, i) => {
+      this.isCollisionPickUpPlayer(coin, i);
+    });
+    this.level.ammunitions.forEach((ammunition, i) => {
+      this.isCollisionPickUpPlayer(ammunition, i);
+    });
+  }
+
+  isCollisionPickUpPlayer(obj, i) {
+    if (this.character.calcCollision(obj)) {
+      this.character.pickUp(obj);
+      this.muniBar.setPercentageItem(this.character.coinCount);
+      this.coinBar.setPercentageItem(this.character.magazine);
+      if (obj instanceof Coin) {
+        this.level.coins.splice(i, 1);
+      }
+      if (obj instanceof Ammunition) {
+        this.level.ammunitions.splice(i, 1);
+      }
+      this.pick_up_sound.play();
     }
   }
 
@@ -145,8 +173,8 @@ class World {
     // zeichnet Muni
     this.addObjToMapInParts(this.level.ammunitions, 5, 0.5);
 
-     // zeichnet Coins
-     this.addObjToMapInParts(this.level.coins, 8, 0.5);
+    // zeichnet Coins
+    this.addObjToMapInParts(this.level.coins, 8, 0.5);
 
     // zeichnet Player
     this.addToMapInParts(this.character, 6, 1.5);

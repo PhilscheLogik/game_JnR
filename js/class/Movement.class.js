@@ -1,9 +1,11 @@
 class Movement extends DrawableObject {
   speed = 0.5;
   otherDirection = false;
-
   energy = 80;
-  lastHit = 0;  
+  lastHit = 0;
+
+  coinCount = 0;
+  magazine = 0;
 
   boundingBox = { x: 0, y: 0, w: 0, h: 0 };
 
@@ -72,9 +74,17 @@ class Movement extends DrawableObject {
     if (obj instanceof Endboss) {
       console.log("Treffer Endboss");
       this.energy -= 20;
-    } else {
+    } else if(obj instanceof Enemy){
       console.log("Treffer Mobs");
       this.energy -= 10;
+    }
+
+    if (obj instanceof Ammunition) {
+      console.log("Muni gefunden");
+      this.magazine += 30;
+    } else if(obj instanceof Coin){
+      console.log("Geld, Geld, Geld");
+      this.coinCount += 30;
     }
 
     if (this.energy < 0) {
@@ -84,6 +94,18 @@ class Movement extends DrawableObject {
     }
 
     console.log(this.energy);
+  }
+
+  pickUp(obj) {   
+
+    if (obj instanceof Ammunition) {
+      console.log("Muni gefunden");
+      this.magazine += 30;
+    } else if(obj instanceof Coin){
+      console.log("Geld, Geld, Geld");
+      this.coinCount += 30;
+    }
+    console.log(this.magazine, this.coinCount);
   }
 
   isHurt() {
