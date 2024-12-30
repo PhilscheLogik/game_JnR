@@ -33,7 +33,7 @@
  */
 const init = () => {
   canvas = document.getElementById("canvas");
-  changeMusic(level_path);
+  changeMusic(level_path, menuSound);
 
   canvas.width = 720;
   canvas.height = 480;
@@ -49,11 +49,11 @@ musicSlider.addEventListener("input", (e) => {
   }
 });
 
-const changeMusic = (newPath) => {
-  menuSound.pause();
-  menuSound.src = newPath; 
-  menuSound.load(); 
-  menuSound.play();
+const changeMusic = (newPath, obj) => {
+  obj.pause();
+  obj.src = newPath; 
+  obj.load(); 
+  obj.play();
 }
 
 document.addEventListener("keydown", (event) => {

@@ -10,10 +10,11 @@ class World {
   coinBar = new StatusBar(2);
   muniBar = new StatusBar(3);
 
-  pick_up_sound = new Audio(
-    "./asset/audio/effects/actions/power_up_pickup.mp3"
-  );
-  dmg_sound = new Audio("./asset/audio/effects/enemies/damage_enemy.mp3");
+  pick_up_sound_path = "./asset/audio/effects/actions/power_up_pickup.mp3";
+  pick_up_sound = new Audio(this.pick_up_sound_path);
+
+  dmg_sound_path = "./asset/audio/effects/enemies/damage_enemy.mp3";
+  dmg_sound = new Audio(this.dmg_sound_path);
 
   bubbleAttack = [];
 
@@ -90,6 +91,13 @@ class World {
 
   /* -----------------------------------------------*/
   constructor(canvas, keyboard) {
+    const SFXSlider = document.getElementById("effects-volume");
+    SFXSlider.addEventListener("input", (e) => {
+      const volume = Number(e.target.value);
+      this.pick_up_sound.volume = volume;
+      this.dmg_sound.volume = volume;
+    });
+
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
@@ -115,11 +123,13 @@ class World {
   }
 
   isCollisionBubble(obj) {
-    console.log("---------------------");  
-    this.bubbleAttack.forEach((bubble, i) => { 
+    console.log("---------------------");
+    this.bubbleAttack.forEach((bubble, i) => {
       if (bubble.calcCollision(obj)) {
         obj.dmg(bubble);
         this.bubbleAttack.splice(i, 1);
+        this.dmg_sound = new Audio(this.dmg_sound_path);
+        this.dmg_sound.play();
       }
       if (
         bubble.x > 1500 ||
@@ -178,6 +188,7 @@ class World {
         this.level.ammunitions.splice(i, 1);
         console.log(this.muniBar);
       }
+      this.pick_up_sound = new Audio(this.pick_up_sound_path);
       this.pick_up_sound.play();
     }
   }
@@ -212,7 +223,7 @@ class World {
     this.addToMapInParts(this.character, 6, 1.5);
 
     // BubbleAttack
-    this.addObjToMapInParts(this.bubbleAttack,1,1);
+    this.addObjToMapInParts(this.bubbleAttack, 1, 1);
 
     // zeichnet Luftblasen
     this.addObjToMapComplete(this.level.foregrounds);

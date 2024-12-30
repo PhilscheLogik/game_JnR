@@ -62,6 +62,7 @@ const renderHowToPlay = () => `
 const createGameOver = () => {
   let contentRef = document.getElementById("menu-section");
   contentRef.innerHTML = renderGameOver();
+  changeMusic(music_path, menuSound);
 };
 
 const renderGameOver = () => `

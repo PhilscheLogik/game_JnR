@@ -43,6 +43,14 @@ class PlayableCharacter extends Movement {
     this.currentState = "IDLE";
     this.totalFrames = Number(this.IMG_IDLE.animationCount);
 
+    const SFXSlider = document.getElementById("effects-volume");
+    SFXSlider.addEventListener("input", (e) => {
+      const volume = Number(e.target.value);
+      this.swim_sound.volume = volume;
+      this.hit_sound.volume = volume;
+      this.death_sound.volume = volume;
+    });
+
     this.animate();
   }
 
@@ -81,6 +89,7 @@ class PlayableCharacter extends Movement {
   executeAttack() {
     if (this.isAttacking) return;
     this.isAttacking = true;
+    this.hit_sound = new Audio("./asset/audio/effects/actions/hit.mp3");
     this.hit_sound.play();
 
     const interval = setInterval(() => {
@@ -95,7 +104,7 @@ class PlayableCharacter extends Movement {
 
   moveRight() {
     this.x += this.speed;
-    this.otherDirection = false;
+    this.otherDirection = false;    
     this.swim_sound.play();
   }
 

@@ -15,3 +15,5 @@ let level_path = "./asset/audio/music/levels/ambient.mp3";
 
 let menuSound = new Audio(music_path);
 const musicSlider = document.getElementById("music-volume");
+
+const SFXSlider = document.getElementById("effects-volume");
