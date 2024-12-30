@@ -4,8 +4,9 @@
  */
 // ----------------------------------------- Warenkorb ------------------------------------------------------
 
-const createStartMenu = () => {
-  let contentRef = document.getElementById("menu-section");
+
+const createStartMenu = () => {    
+  let contentRef = document.getElementById("menu-section");  
   contentRef.innerHTML = renderStartMenu();
 };
 

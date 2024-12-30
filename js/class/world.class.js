@@ -111,6 +111,7 @@ class World {
     this.level.enemies.forEach((enemy) => {
       this.isCollisionBubble(enemy);
     });
+    this.isCollisionBubble(this.level.endboss);
   }
 
   isCollisionBubble(obj) {

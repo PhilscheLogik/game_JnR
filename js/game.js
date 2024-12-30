@@ -1,9 +1,4 @@
 "use strict";
-/** BUG ANIMATION
- * nach einer Animation z.B. beim Drücken von Q, wird danach
- * nicht das ursprüngliche Bild angezeigt
- * -> verschoben auf später, da Idle noch nicht hinzugefügt
- */
 
 /** BUG SOUND
  * Pause des swim sounds ist zu hören - ggf. abändern
@@ -13,7 +8,7 @@
  * man könnte eine Variable setzen bei Enemies und Player, damit die
  * Funktion addToMapInParts(..,.., Faktor) in world den Faktor nicht
  * mehr benötigt. So könnte man unterschiedliche Werte bei den
- * Gegner einsetzten, vielleicht auch ein
+ * Gegner einsetzen, vielleicht auch ein
  * Item, welches den Endboss entschärft/verkleinert.
  */
 
@@ -38,13 +33,28 @@
  */
 const init = () => {
   canvas = document.getElementById("canvas");
+  changeMusic(level_path);
 
   canvas.width = 720;
   canvas.height = 480;
-
   world = new World(canvas, keyboard);
-  // console.log(world);  
 };
+
+menuSound.loop = true;
+musicSlider.addEventListener("input", (e) => {
+  const volume = Number(e.target.value);
+  menuSound.volume = volume;
+  if (menuSound.paused) {
+    menuSound.play();
+  }
+});
+
+const changeMusic = (newPath) => {
+  menuSound.pause();
+  menuSound.src = newPath; 
+  menuSound.load(); 
+  menuSound.play();
+}
 
 document.addEventListener("keydown", (event) => {
   switch (event.code) {

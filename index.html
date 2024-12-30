@@ -22,26 +22,38 @@
   <!-- onload="init()" -->
   <body id="body-container" onload="createStartMenu()">
     <!-- header -->
-    <header>
-      <img src="#" alt="Logo" />
-      <h1>The Sunken Ship</h1>
-
-      <nav onclick="">
-        <img
-          id="burger-menue"
-          src="./asset/img/icon/menu_burger_icon.png"
-          alt="burger Icon"
-        />
-      </nav>
-    </header>
+    <header><h1>The Sunken Ship</h1></header>
     <!-- main -->
-    <main>
+    <main id="main-content">
       <canvas
         id="canvas"
         class="d_none"
         style="width: 720px; height: 480px"
       ></canvas>
       <section id="menu-section"></section>
+
+      <div>
+        <label for="music-volume">Musiklautstärke:</label>
+        <input
+          type="range"
+          id="music-volume"
+          min="0"
+          max="1"
+          step="0.01"
+          value="0.0"
+        />
+      </div>
+      <div>
+        <label for="effects-volume">Geräuschlautstärke:</label>
+        <input
+          type="range"
+          id="effects-volume"
+          min="0"
+          max="1"
+          step="0.01"
+          value="0.0"
+        />
+      </div>
     </main>
 
     <!-- footbar -->
@@ -89,6 +101,7 @@
   <script src="./js/levels/level1.js" defer="defer"></script>
   <script src="./js/class/world.class.js" defer="defer"></script>
 
+  <!-- <script src="./js/sound.js" type="module" defer="defer"></script> -->
   <script src="./js/database.js" defer="defer"></script>
   <script src="./js/template.js" defer="defer"></script>
   <script src="./js/game.js" defer="defer"></script>

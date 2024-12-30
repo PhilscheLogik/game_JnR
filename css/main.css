@@ -7,6 +7,10 @@ main {
     justify-content: center;
     align-items: center;
 
+    color: white;
+
+    min-height: 100vh;
+
     background: linear-gradient(135deg, black, #075492, #117a52, #075492, black);
 
     padding: 16px var(--padding_calc);
@@ -15,6 +19,8 @@ main {
 
 canvas {
     background-color: var(--font_basic);
+    box-shadow: 0px 0px 6px 6px rgba(255, 255, 255, 0.2), 0px 10px 14px 1px rgba(255, 255, 255, 0.14), 0px 4px 18px 3px rgba(0, 0, 0, 0.12);
+
     /* width: 960px;
     height: 540px; */
 }

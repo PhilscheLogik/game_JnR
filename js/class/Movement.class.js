@@ -4,6 +4,8 @@ class Movement extends DrawableObject {
   energy = 80;
   lastHit = 0;
 
+  dmgValue = 80;
+
   coinCount = 0;
   magazine = 0;
 
@@ -107,11 +109,13 @@ class Movement extends DrawableObject {
   dmg(obj) {
     if (obj instanceof ThrowableObject) {
       console.log("Bubble Treffer");
-      this.energy -= 80;
+      this.energy -= this.dmgValue;
+      console.log('Energie: ', this.energy);
     } 
     
-    if (this.energy < 0) {
+    if (this.energy <= 0) {
       this.energy = 0;
+      console.log("DEATH ENEMY");
     } else {
       this.lastHit = new Date().getTime();
     }
