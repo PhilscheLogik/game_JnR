@@ -14,6 +14,7 @@ let level1 = new Level(
   ],
 
   //endboss
+
   new Endboss(
     "../../asset/img/art/2_enemy/7_endboss/3 Big bloated/Big_bloated_idle.png",
     4
@@ -134,5 +135,5 @@ let level1 = new Level(
   [new Ammunition(), new Ammunition()],
 
   // coins
-  [new Coin(), new Coin(), new Coin(), new Coin()],
+  [new Coin(), new Coin(), new Coin(), new Coin()]
 );

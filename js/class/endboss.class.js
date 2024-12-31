@@ -4,12 +4,16 @@ class Endboss extends Enemy {
   h = 72;
   energy = 240;
 
+  IMG_DEATH = {
+    path: "../../asset/img/art/2_enemy/7_endboss/3 Big bloated/Big_bloated_death.png",
+    animationCount: 4,
+  };
+
   constructor(path, divisor) {
-    super(path,divisor)
+    super(path, divisor);
 
     this.x = 1000;
     this.y = 200;
-    
   }
 
   animate() {

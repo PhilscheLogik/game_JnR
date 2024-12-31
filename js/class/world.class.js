@@ -16,6 +16,9 @@ class World {
   dmg_sound_path = "./asset/audio/effects/enemies/damage_enemy.mp3";
   dmg_sound = new Audio(this.dmg_sound_path);
 
+  player_sound_path = "./asset/audio/effects/actions/dmg.mp3";
+  player_sound = new Audio(this.player_sound_path);
+
   bubbleAttack = [];
 
   addObjToMapComplete(obj) {
@@ -45,6 +48,21 @@ class World {
   addToMapInParts(item, divisor, factor) {
     let x_coordinate = item.x;
     this.ctx.save();
+
+    if (item.isDead()) {
+      console.log("Animation Tod erkannt");
+      item.img.src = item.IMG_DEATH.path;
+      item.totalFrames = item.IMG_DEATH.animationCount;
+      if (item.deathframe) {
+        item.frameIndex = 0;
+        item.deathframe = false;
+      }
+
+      if (item.frameIndex >= item.totalFrames) {
+        item.frameIndex = item.totalFrames - 1;
+        console.log("letzter Frame");
+      }
+    }
 
     if (item.otherDirection) {
       this.ctx.scale(-1, 1);
@@ -109,10 +127,24 @@ class World {
   run() {
     setInterval(() => {
       this.checkCollisionsFoes();
+      this.checkEnemiesDeath();
       this.checkCollisionsItems();
       this.checkThrow();
       this.checkBubbleAttack();
     }, 500);
+  }
+
+  checkEnemiesDeath() {
+    this.level.enemies.forEach((enemy, i) => {
+      if (!enemy.deathframe && enemy.frameIndex >= 5) {
+        this.level.enemies.splice(i, 1);
+      }
+    });
+    if (!this.level.endboss.deathframe && this.level.endboss.frameIndex >= 3) {
+      createWinScreen();
+      toggleClass("menu-section", "d_none");
+      toggleClass("canvas", "d_none");
+    }
   }
 
   checkBubbleAttack() {
@@ -163,6 +195,8 @@ class World {
     if (this.character.calcCollision(obj)) {
       this.character.hit(obj);
       this.statusBar.setPercentageEnergy(this.character.energy);
+      this.player_sound = new Audio(this.player_sound_path);
+      this.player_sound.play();
     }
   }
 

@@ -88,6 +88,7 @@ const renderGameOver = () => `
 const createWinScreen = () => {
   let contentRef = document.getElementById("menu-section");
   contentRef.innerHTML = renderWinScreen();
+  changeMusic(music_path, menuSound);
 };
 
 const renderWinScreen = () => `

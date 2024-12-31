@@ -4,10 +4,18 @@ class Movement extends DrawableObject {
   energy = 80;
   lastHit = 0;
 
+  deathframe = true;
+  
+
   dmgValue = 80;
 
   coinCount = 0;
   magazine = 0;
+
+  IMG_DEATH = {
+    path: "../../asset/img/art/2_enemy/06_fish/Attack.png",
+    animationCount: 6,
+  };  
 
   boundingBox = { x: 0, y: 0, w: 0, h: 0 };
 
@@ -81,8 +89,9 @@ class Movement extends DrawableObject {
       this.energy -= 10;
     }
 
-    if (this.energy < 0) {
-      this.energy = 0;
+    if (this.isDead()) {
+      this.energy = 0;  
+      console.log("Player Tod");        
     } else {
       this.lastHit = new Date().getTime();
     }
@@ -113,7 +122,7 @@ class Movement extends DrawableObject {
       console.log('Energie: ', this.energy);
     } 
     
-    if (this.energy <= 0) {
+    if (this.isDead()) {
       this.energy = 0;
       console.log("DEATH ENEMY");
     } else {
