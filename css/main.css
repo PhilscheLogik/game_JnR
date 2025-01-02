@@ -345,3 +345,8 @@ canvas {
     background: linear-gradient(0deg, rgba(255, 0, 0, 0.75),rgba(255, 0, 0,0));
     z-index: 10;
 }
+
+#music-volume,
+#effects-volume {
+    cursor: pointer;
+}

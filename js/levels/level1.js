@@ -1,9 +1,9 @@
-// enemies, endboss, foregrounds, backgroundObjects
-let img_f = 2;
-let img_w = 576 * img_f;
-let imh_h = 324 * img_f;
 
-let level1 = new Level(
+// let img_f = 2;
+// let img_w = 576 * img_f;
+// let imh_h = 324 * img_f;
+
+const createLevel1 = () => new Level(
   //enemies
   [
     new Fish("../../asset/img/art/2_enemy/6_fish/Walk.png", 4),

@@ -43,6 +43,10 @@ class PlayableCharacter extends Movement {
     this.currentState = "IDLE";
     this.totalFrames = Number(this.IMG_IDLE.animationCount);
 
+    this.swim_sound.volume = 0;
+    this.hit_sound.volume = 0;
+    this.death_sound.volume = 0;
+
     const SFXSlider = document.getElementById("effects-volume");
     SFXSlider.addEventListener("input", (e) => {
       const volume = Number(e.target.value);
@@ -100,12 +104,11 @@ class PlayableCharacter extends Movement {
         this.hit_sound.pause();
       }
     }, 200);
-    intervalIds.push(interval);
   }
 
   moveRight() {
     this.x += this.speed;
-    this.otherDirection = false;    
+    this.otherDirection = false;
     this.swim_sound.play();
   }
 
@@ -196,8 +199,5 @@ class PlayableCharacter extends Movement {
         }
       }
     }, 200);
-
-  //   intervalIds.push(animationIntervall);
-  //   intervalIds.push(stateInterval);
   }
 }

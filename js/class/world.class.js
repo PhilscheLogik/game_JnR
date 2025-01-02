@@ -5,10 +5,10 @@ class World {
   camera_x = 50;
   camera_y = 50;
   character = new PlayableCharacter();
-  level = level1;
   statusBar = new StatusBar(1);
   coinBar = new StatusBar(2);
   muniBar = new StatusBar(3);
+  bubbleAttack = [];
 
   pick_up_sound_path = "./asset/audio/effects/actions/power_up_pickup.mp3";
   pick_up_sound = new Audio(this.pick_up_sound_path);
@@ -16,21 +16,8 @@ class World {
   dmg_sound_path = "./asset/audio/effects/enemies/damage_enemy.mp3";
   dmg_sound = new Audio(this.dmg_sound_path);
 
-  player_sound_path = "./asset/audio/effects/actions/dmg.mp3";
-  player_sound = new Audio(this.player_sound_path);
-
-  bubbleAttack = [];
-
-  reset() {
-    this.camera_x = 50;
-    this.camera_y = 50;
-    this.character = new PlayableCharacter();
-    this.level = level1;
-    this.statusBar = new StatusBar(1);
-    this.coinBar = new StatusBar(2);
-    this.muniBar = new StatusBar(3);
-    this.bubbleAttack = [];
-  }
+  player_dmg_sound_path = "./asset/audio/effects/actions/dmg.mp3";
+  player_dmg_sound = new Audio(this.player_dmg_sound_path);
 
   addObjToMapComplete(obj) {
     obj.forEach((item) => {
@@ -59,27 +46,21 @@ class World {
   addToMapInParts(item, divisor, factor) {
     let x_coordinate = item.x;
     this.ctx.save();
-
     if (item.isDead()) {
-      console.log("Animation Tod erkannt");
       item.img.src = item.IMG_DEATH.path;
       item.totalFrames = item.IMG_DEATH.animationCount;
       if (item.deathframe) {
         item.frameIndex = 0;
         item.deathframe = false;
       }
-
       if (item.frameIndex >= item.totalFrames) {
         item.frameIndex = item.totalFrames - 1;
-        console.log("letzter Frame");
       }
     }
-
     if (item.otherDirection) {
       this.ctx.scale(-1, 1);
-      x_coordinate = -item.x - item.w / divisor;
+      x_coordinate = -item.x - (item.w / divisor)* factor;
     }
-
     this.ctx.drawImage(
       item.img,
       (item.w / divisor) * item.frameIndex,
@@ -91,16 +72,13 @@ class World {
       (item.w / divisor) * factor,
       item.h * factor
     );
-
     item.updateBoundingBox(
       x_coordinate,
       item.y,
       (item.w / divisor) * factor,
       item.h * factor
     );
-
     item.drawRect(this.ctx);
-
     this.ctx.restore();
   }
 
@@ -118,18 +96,18 @@ class World {
     );
   }
 
-  /* -----------------------------------------------*/
-  constructor(canvas, keyboard) {
-    const SFXSlider = document.getElementById("effects-volume");
-    SFXSlider.addEventListener("input", (e) => {
-      const volume = Number(e.target.value);
-      this.pick_up_sound.volume = volume;
-      this.dmg_sound.volume = volume;
-    });
+  SFXVolume() {
+    let SFXSlider = document.getElementById("effects-volume");
+    return SFXSlider.value;   
+  }
 
+  /* -----------------------------------------------*/
+  constructor(canvas, keyboard) {    
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
+    this.level = createLevel1();
+
     this.draw();
     this.setWorld();
     this.run();
@@ -137,12 +115,24 @@ class World {
 
   run() {
     setInterval(() => {
-      this.checkCollisionsFoes();
+      this.checkCollisionsEnemy();
       this.checkEnemiesDeath();
       this.checkCollisionsItems();
       this.checkThrow();
       this.checkBubbleAttack();
+      this.checkEndbossWalk()
     }, 500);
+  }
+
+  checkEndbossWalk() {
+
+    if((this.level.endboss.x - this.character.x) < 250)
+    {
+      this.level.endboss.img.src = this.level.endboss.IMG_WALK.path;
+      this.level.endboss.totalFrames = this.level.endboss.IMG_WALK.animationCount;      
+      this.level.endboss.moveToLeft();      
+    }
+   
   }
 
   checkEnemiesDeath() {
@@ -151,7 +141,7 @@ class World {
         this.level.enemies.splice(i, 1);
       }
     });
-    if (!this.level.endboss.deathframe && this.level.endboss.frameIndex >= 3) {
+    if (!this.level.endboss.deathframe && this.level.endboss.frameIndex >= 2) {
       createWinScreen();
       toggleClass("menu-section", "d_none");
       toggleClass("canvas", "d_none");
@@ -166,12 +156,12 @@ class World {
   }
 
   isCollisionBubble(obj) {
-    console.log("---------------------");
     this.bubbleAttack.forEach((bubble, i) => {
       if (bubble.calcCollision(obj)) {
         obj.dmg(bubble);
         this.bubbleAttack.splice(i, 1);
         this.dmg_sound = new Audio(this.dmg_sound_path);
+        this.dmg_sound.volume = this.SFXVolume();
         this.dmg_sound.play();
       }
       if (
@@ -195,7 +185,7 @@ class World {
     }
   }
 
-  checkCollisionsFoes() {
+  checkCollisionsEnemy() {
     this.level.enemies.forEach((enemy) => {
       this.isCollisionHitPlayer(enemy);
     });
@@ -206,8 +196,9 @@ class World {
     if (this.character.calcCollision(obj)) {
       this.character.hit(obj);
       this.statusBar.setPercentageEnergy(this.character.energy);
-      this.player_sound = new Audio(this.player_sound_path);
-      this.player_sound.play();
+      this.player_dmg_sound = new Audio(this.player_dmg_sound_path);
+      this.player_dmg_sound.volume = this.SFXVolume();
+      this.player_dmg_sound.play();
     }
   }
 
@@ -226,14 +217,13 @@ class World {
       this.muniBar.setPercentageItem(this.character.magazine);
       this.coinBar.setPercentageItem(this.character.coinCount);
       if (obj instanceof Coin) {
-        this.level.coins.splice(i, 1);
-        console.log(this.coinBar);
+        this.level.coins.splice(i, 1);        
       }
       if (obj instanceof Ammunition) {
         this.level.ammunitions.splice(i, 1);
-        console.log(this.muniBar);
       }
       this.pick_up_sound = new Audio(this.pick_up_sound_path);
+      this.pick_up_sound.volume = this.SFXVolume();
       this.pick_up_sound.play();
     }
   }
@@ -256,7 +246,7 @@ class World {
     this.addObjToMapInParts(this.level.enemies, 4, 1.5);
 
     // zeichnet Endboss
-    this.addToMapInParts(this.level.endboss, 4, 4);
+    this.addToMapInParts(this.level.endboss, 4, 9);
 
     // zeichnet Muni
     this.addObjToMapInParts(this.level.ammunitions, 5, 0.5);

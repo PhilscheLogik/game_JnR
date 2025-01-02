@@ -1,6 +1,14 @@
 "use strict";
 
 /** BUG SOUND
+ * Fehler bei der Einstellung der Sounds
+ * Wenn nichts ausgewählt wurde, wird der Sound bei Spielbeginn dennoch abgespielt
+ * SFX Sound von der Welt wird abgespielt, aber nicht in der Lautstärke 
+ * des Sliders -> Player funktioniert, aber auch ähnlich wie oben, wenn nichts ausgewählt, 
+ * dann dennoch abgespielt
+ */
+
+/** BUG SOUND
  * Pause des swim sounds ist zu hören - ggf. abändern
  */
 
@@ -38,15 +46,16 @@ const init = () => {
   canvas.width = 720;
   canvas.height = 480;
 
+  world = null;
   world = new World(canvas, keyboard);
   console.log(world);
   
 };
 
 const clearAllIntervals = () => {
-  let id = setTimeout(() => {}, 0); // Die höchste ID herausfinden
+  let id = setTimeout(() => {}, 0);
   while (id--) {
-    clearTimeout(id); // Alle Timer stoppen
+    clearTimeout(id);
   }
 }
 
@@ -147,7 +156,7 @@ document.addEventListener("keyup", (event) => {
   }
 });
 
-// -------------- Zeug --------------------
+
 /** DE
  * Entfernt das Overlay-Element.
  * @param {String} id
@@ -158,7 +167,6 @@ const closeOverlay = (id) => {
   parent.removeChild(overlay);
 };
 
-// ----------------------------------------- Sonstige ------------------------------------------------------
 /** DE
  * Schaltet eine Klasse für ein HTML-Element um.
  * @param {string} id - ID des HTML-Elements.

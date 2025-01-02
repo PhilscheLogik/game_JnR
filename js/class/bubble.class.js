@@ -5,9 +5,7 @@ class Bubble extends Movement {
   constructor(path, x, y) {
     super().loadImage(path);
     this.y = y; 
-    this.x = -100 + Math.random() * 720 ;   
-     
-
+    this.x = -100 + Math.random() * 720 ; 
     this.moveToUp();
   }
 }

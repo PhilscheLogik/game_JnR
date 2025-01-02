@@ -1,11 +1,10 @@
 class Enemy extends Movement {
   frameIndex = 0;
-  totalFrames = 6;  
   w = 192;
 
   constructor(path, divisor) {
     super().loadImage(path);
-    this.x = 150 + Math.random() * 500;
+    this.x = 300 + Math.random() * 500;
     this.y = 150 + Math.random() * 200;
     this.totalFrames = divisor;     
 
