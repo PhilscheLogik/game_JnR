@@ -21,6 +21,17 @@ class World {
 
   bubbleAttack = [];
 
+  reset() {
+    this.camera_x = 50;
+    this.camera_y = 50;
+    this.character = new PlayableCharacter();
+    this.level = level1;
+    this.statusBar = new StatusBar(1);
+    this.coinBar = new StatusBar(2);
+    this.muniBar = new StatusBar(3);
+    this.bubbleAttack = [];
+  }
+
   addObjToMapComplete(obj) {
     obj.forEach((item) => {
       this.addToMapComplete(item);

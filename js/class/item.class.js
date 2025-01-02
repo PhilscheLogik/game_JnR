@@ -14,6 +14,6 @@ class Item extends Movement {
           if (this.frameIndex >= this.totalFrames) {
             this.frameIndex = 0;
           }
-        }, 200);
+        }, 200);        
       }
 }

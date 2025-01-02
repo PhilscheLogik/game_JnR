@@ -37,10 +37,18 @@ const init = () => {
 
   canvas.width = 720;
   canvas.height = 480;
+
   world = new World(canvas, keyboard);
   console.log(world);
   
 };
+
+const clearAllIntervals = () => {
+  let id = setTimeout(() => {}, 0); // Die höchste ID herausfinden
+  while (id--) {
+    clearTimeout(id); // Alle Timer stoppen
+  }
+}
 
 menuSound.loop = true;
 musicSlider.addEventListener("input", (e) => {

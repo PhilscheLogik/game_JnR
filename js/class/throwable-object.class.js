@@ -22,5 +22,7 @@ class ThrowableObject extends Movement {
         this.y -= Math.pow(0.5, 2);        
     }, 1000 / 60);
 
+    // intervalIds.push(interval);
+
   }
 }

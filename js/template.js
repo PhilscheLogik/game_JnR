@@ -62,7 +62,10 @@ const renderHowToPlay = () => `
 const createGameOver = () => {
   let contentRef = document.getElementById("menu-section");
   contentRef.innerHTML = renderGameOver();
-  changeMusic(music_path, menuSound);
+  changeMusic(music_path, menuSound);  
+  
+  // generateIntervals();
+  clearAllIntervals();   
 };
 
 const renderGameOver = () => `
@@ -89,6 +92,9 @@ const createWinScreen = () => {
   let contentRef = document.getElementById("menu-section");
   contentRef.innerHTML = renderWinScreen();
   changeMusic(music_path, menuSound);
+
+  // generateIntervals();
+  clearAllIntervals(); 
 };
 
 const renderWinScreen = () => `

@@ -100,6 +100,7 @@ class PlayableCharacter extends Movement {
         this.hit_sound.pause();
       }
     }, 200);
+    intervalIds.push(interval);
   }
 
   moveRight() {
@@ -195,5 +196,8 @@ class PlayableCharacter extends Movement {
         }
       }
     }, 200);
+
+  //   intervalIds.push(animationIntervall);
+  //   intervalIds.push(stateInterval);
   }
 }

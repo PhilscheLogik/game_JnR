@@ -22,6 +22,6 @@ class Endboss extends Enemy {
       if (this.frameIndex >= this.totalFrames) {
         this.frameIndex = 0;
       }
-    }, 200);
+    }, 200);   
   }
 }

@@ -9,17 +9,5 @@ class Bubble extends Movement {
      
 
     this.moveToUp();
-    // this.moveToDown();
   }
-//--------------------------------------
-  // animateBubble(){
-  //   setInterval( () => {
-  //     this.y -= this.speed;
-
-  //     if (this.y < -100) {
-  //       this.y = 480; 
-  //       this.x = -100 + Math.random() * 200; 
-  //     }
-  //   }, 100/6)      
-  // }
 }

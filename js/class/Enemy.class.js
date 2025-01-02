@@ -26,5 +26,6 @@ class Enemy extends Movement {
         this.frameIndex = 0;
       }
     }, 200);
+    
   }
 }
