@@ -6,6 +6,9 @@ class Endboss extends Enemy {
 
   speed = 0.1;
 
+  // offset = { x: 0, y: 200, w: 250, h: 0};
+  offset = { x: 230, y: 200, w: 100, h: 0};
+
   IMG_DEATH = {
     path: "../../asset/img/art/2_enemy/7_endboss/3 Big bloated/Big_bloated_death.png",
     animationCount: 4,

@@ -5,7 +5,6 @@ class Movement extends DrawableObject {
   lastHit = 0;
 
   deathframe = true;
-  
 
   dmgValue = 80;
 
@@ -15,13 +14,7 @@ class Movement extends DrawableObject {
   IMG_DEATH = {
     path: "../../asset/img/art/2_enemy/06_fish/Attack.png",
     animationCount: 6,
-  };  
-
-  boundingBox = { x: 0, y: 0, w: 0, h: 0 };
-
-  updateBoundingBox(x, y, w, h) {
-    this.boundingBox = { x, y, w, h };
-  }
+  };
 
   moveToLeft() {
     setInterval(() => {
@@ -67,14 +60,40 @@ class Movement extends DrawableObject {
     }, 100 / 6);
   }
 
+  // calcCollision(other) {
+  //   return (
+  //     this.x < other.x + other.boundingBox.w &&
+  //     this.x + this.boundingBox.w > other.x &&
+  //     this.boundingBox.y < other.boundingBox.y + other.boundingBox.h &&
+  //     this.boundingBox.y + this.boundingBox.h > other.boundingBox.y
+  //   );
+  // }
+
   calcCollision(other) {
     return (
-      this.x < other.x + other.boundingBox.w &&
-      this.x + this.boundingBox.w > other.x &&
-      this.boundingBox.y < other.boundingBox.y + other.boundingBox.h &&
-      this.boundingBox.y + this.boundingBox.h > other.boundingBox.y
+      this.x + this.offset.x < other.x + other.offset.x + other.boundingBox.w - other.offset.w &&
+      this.x + this.offset.x + this.boundingBox.w - this.offset.w> other.x + other.offset.x &&
+      this.boundingBox.y + this.offset.y < other.boundingBox.y + other.offset.y + other.boundingBox.h - other.offset.h &&
+      this.boundingBox.y + this.offset.y + this.boundingBox.h - this.offset.h > other.boundingBox.y + other.offset.y
     );
   }
+  
+
+  
+//   this.boundingBox.x + this.offset.x + this.boundingBox.w - this.offset.w >
+//   other.boundingBox.x + other.offset.x &&
+// this.boundingBox.y + this.offset.y + this.boundingBox.h - this.offset.h >
+//   other.boundingBox.y + other.offset.y &&
+// this.boundingBox.x + this.offset.x <
+//   other.boundingBox.x +
+//     other.offset.x +
+//     other.boundingBox.w -
+//     other.offset.w &&
+// this.boundingBox.y + this.offset.y <
+//   other.boundingBox.y +
+//     other.offset.y +
+//     other.boundingBox.h -
+//     other.offset.h
 
   isDead() {
     return this.energy <= 0;
@@ -90,8 +109,8 @@ class Movement extends DrawableObject {
     }
 
     if (this.isDead()) {
-      this.energy = 0;  
-      console.log("Player Tod");        
+      this.energy = 0;
+      console.log("Player Tod");
     } else {
       this.lastHit = new Date().getTime();
     }
@@ -119,9 +138,9 @@ class Movement extends DrawableObject {
     if (obj instanceof ThrowableObject) {
       console.log("Bubble Treffer");
       this.energy -= this.dmgValue;
-      console.log('Energie: ', this.energy);
-    } 
-    
+      console.log("Energie: ", this.energy);
+    }
+
     if (this.isDead()) {
       this.energy = 0;
       console.log("DEATH ENEMY");

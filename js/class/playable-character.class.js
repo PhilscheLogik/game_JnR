@@ -7,6 +7,8 @@ class PlayableCharacter extends Movement {
   hit_sound = new Audio("./asset/audio/effects/actions/hit.mp3");
   death_sound = new Audio("./asset/audio/effects/enemies/sinister_laugh.mp3");
 
+  offset = { x: 5, y: 10, w: 20, h: 15};
+
   IMG_SWIM = {
     path: "../../asset/img/art/1_character/01_steam_man/Swim.png",
     animationCount: 6,

@@ -79,6 +79,7 @@ class World {
       item.h * factor
     );
     item.drawRect(this.ctx);
+    item.drawOffsetRect(this.ctx);
     this.ctx.restore();
   }
 
@@ -243,7 +244,7 @@ class World {
     this.addObjToMapComplete(this.level.backgroundObjects);
 
     // zeichnet die Feinde
-    this.addObjToMapInParts(this.level.enemies, 4, 1.5);
+    this.addObjToMapInParts(this.level.enemies, 4, 2);
 
     // zeichnet Endboss
     this.addToMapInParts(this.level.endboss, 4, 9);
@@ -255,7 +256,7 @@ class World {
     this.addObjToMapInParts(this.level.coins, 8, 0.5);
 
     // zeichnet Player
-    this.addToMapInParts(this.character, 6, 1.5);
+    this.addToMapInParts(this.character, 6, 1.2);
 
     // BubbleAttack
     this.addObjToMapInParts(this.bubbleAttack, 1, 1);
