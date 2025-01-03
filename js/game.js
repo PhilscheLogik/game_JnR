@@ -178,9 +178,7 @@ const toggleClass = (id, classname) => {
 };
 
 // Funktion zur Überprüfung der Ausrichtung
-const checkOrientation = () => {
-  console.log('Breite:', window.innerWidth, 'Höhe: ', window.innerHeight , window.innerWidth < window.innerHeight);
-  
+const checkOrientation = () => {  
   if (window.innerWidth < window.innerHeight) {
     // Hochformat
     orientationWarning.classList.remove("d_none");    
@@ -189,9 +187,12 @@ const checkOrientation = () => {
     orientationWarning.classList.add("d_none");    
   }
 }
-
-// checkOrientation();
-// window.addEventListener('orientationchange', checkOrientation);
-
 window.addEventListener("load", checkOrientation);
 window.addEventListener("resize", checkOrientation);
+
+document.getElementById("myButton").addEventListener("click", () => {
+  const section = document.getElementById("main-content");
+  // Scrollt die Section in den sichtbaren Bereich
+  section.scrollIntoView({ behavior: "smooth" });
+});
+

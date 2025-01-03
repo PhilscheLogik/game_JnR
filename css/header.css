@@ -20,12 +20,12 @@ header {
 }
 
 /* -------------------  Navbar  -----------------*/
-nav>img {
+nav img {
     cursor: pointer;
     height: var(--height_img);
 }
 
-nav>img:hover {
+nav img:hover {
     filter: drop-shadow(0px 0px 2px var(--bg_color));
 }
 

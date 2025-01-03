@@ -1,3 +1,39 @@
-@media(min-width: 1400px) {
-    
+@media (max-width: 725px) {
+
+    canvas,
+    #menu-section {
+        width: 100%;
+        height: 100%;
+    }
 }
+@media (min-width: 721px) {    
+    #myButton{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+
+    canvas,
+    #menu-section,
+    #menu-section > div,
+    #canvas-section {
+        width: 100% !important;      
+    }
+    #myButton{
+        display: inline-block;
+    }
+}
+
+@media only screen and (max-height: 485px) {
+    canvas,
+    #menu-section,
+    #menu-section > div {        
+        height: calc(100vh - 20px) !important;
+    }
+    #myButton{
+        display: inline-block;
+    }
+}
+
+

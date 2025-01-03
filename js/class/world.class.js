@@ -145,7 +145,7 @@ class World {
     if (!this.level.endboss.deathframe && this.level.endboss.frameIndex >= 2) {
       createWinScreen();
       toggleClass("menu-section", "d_none");
-      toggleClass("canvas", "d_none");
+      toggleClass("canvas-section", "d_none");
     }
   }
 

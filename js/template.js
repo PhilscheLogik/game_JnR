@@ -16,10 +16,10 @@ const createStartMenu = () => {
  */
 const renderStartMenu = () => `
 <div>
-  <h2 id="h2-title" >The Sunken Ship</h2>  
+  <h2 id="h2-title" >The Sunken Ships</h2>  
   <div>
     <button
-      onclick="init(), toggleClass('menu-section','d_none'), toggleClass('canvas','d_none')"
+      onclick="init(), toggleClass('menu-section','d_none'), toggleClass('canvas-section','d_none')"
     >
       Game Start
     </button>
@@ -74,7 +74,7 @@ const renderGameOver = () => `
   <span>Niederlage fortsetzen?</span>
   <div>
     <button
-      onclick="init(), toggleClass('menu-section','d_none'), toggleClass('canvas','d_none')"
+      onclick="init(), toggleClass('menu-section','d_none'), toggleClass('canvas-section','d_none')"
     >
     Ja 
     </button>
@@ -102,7 +102,7 @@ const renderWinScreen = () => `
   <span>Nochmal?</span>
   <div>
     <button
-      onclick="init(), toggleClass('menu-section','d_none'), toggleClass('canvas','d_none')"
+      onclick="init(), toggleClass('menu-section','d_none'), toggleClass('canvas-section','d_none')"
     >
     Ja 
     </button>

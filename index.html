@@ -19,7 +19,7 @@
       type="image/x-icon"
     />
   </head>
-  <!-- onload="init()" -->
+
   <body id="body-container" onload="createStartMenu()">
     <!-- note/clue -->
     <div id="orientation-warning" class="d_none">
@@ -27,14 +27,37 @@
       <img src="./asset/img/icon/rotate-icon.png" alt="Rotate Device Icon" />
     </div>
     <!-- header -->
-    <header><h1>The Sunken Ship</h1></header>
+    <header>
+      <h1>Die versunkenen Schiffe</h1>
+      <nav>
+        <a id="myButton" href="#main-content"
+          ><img src="./asset/img/icon/screen.png" alt="Screen Icon"
+        /></a>
+      </nav>
+    </header>
     <!-- main -->
     <main id="main-content">
-      <canvas
-        id="canvas"
-        class="d_none"
-        style="width: 720px; height: 480px"
-      ></canvas>
+      <section id="canvas-section" class="d_none">
+        <canvas id="canvas" style="width: 720px; height: 480px"></canvas>
+
+        <!-- left -->
+        <section id="joystick-container">
+          <div class="cross-container">
+            <div id="button-1" class="control-button top">↑</div>
+            <div id="button-2" class="control-button left">←</div>
+            <div id="button-3" class="control-button bottom">↓</div>
+            <div id="button-4" class="control-button right">→</div>
+          </div>
+        </section>
+
+        <!-- right -->
+        <section id="controls">
+          <div class="cross-container">
+            <div id="button-5" class="control-button right">Q</div>
+            <div id="button-6" class="control-button left">#</div>
+          </div>
+        </section>
+      </section>
       <section id="menu-section"></section>
 
       <div>

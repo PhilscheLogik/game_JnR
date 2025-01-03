@@ -143,7 +143,7 @@ class PlayableCharacter extends Movement {
 
         console.log("Tod");
         setTimeout(() => {
-          toggleClass("canvas", "d_none");
+          toggleClass("canvas-section", "d_none");
           toggleClass("menu-section", "d_none");
           createGameOver();
         }, 1000);

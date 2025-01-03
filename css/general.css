@@ -71,18 +71,3 @@ body {
     height: 100px;
     margin-top: 20px;
 }
-
-/* @media (orientation: portrait) and (max-width: 768px) {
-    #orientation-warning {
-      display: inline-block;
-    }
-  } */
-
-@media (max-width: 725px) {
-
-    canvas,
-    #menu-section {
-        width: 100%;
-        height: 100%;
-    }
-}
