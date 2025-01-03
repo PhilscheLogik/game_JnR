@@ -176,3 +176,22 @@ const toggleClass = (id, classname) => {
   let idRef = document.getElementById(id);
   idRef.classList.toggle(classname);
 };
+
+// Funktion zur Überprüfung der Ausrichtung
+const checkOrientation = () => {
+  console.log('Breite:', window.innerWidth, 'Höhe: ', window.innerHeight , window.innerWidth < window.innerHeight);
+  
+  if (window.innerWidth < window.innerHeight) {
+    // Hochformat
+    orientationWarning.classList.remove("d_none");    
+  } else {
+    // Querformat
+    orientationWarning.classList.add("d_none");    
+  }
+}
+
+// checkOrientation();
+// window.addEventListener('orientationchange', checkOrientation);
+
+window.addEventListener("load", checkOrientation);
+window.addEventListener("resize", checkOrientation);

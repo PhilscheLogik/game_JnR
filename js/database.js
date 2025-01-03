@@ -3,6 +3,8 @@
  * Hier werden globale Objekte oder Variablen zugewiesen.
  */
 
+const orientationWarning = document.getElementById("orientation-warning");
+
 let canvas;
 let world;
 let keyboard = new Keyboard();

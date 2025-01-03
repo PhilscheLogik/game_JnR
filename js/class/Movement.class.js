@@ -20,7 +20,7 @@ class Movement extends DrawableObject {
     setInterval(() => {
       this.x -= this.speed;
       this.otherDirection = true;
-      if (this.x < -150) {
+      if (this.x < -500) {
         this.x = 1500;
         this.y = 100 + Math.random() * 300;
       }

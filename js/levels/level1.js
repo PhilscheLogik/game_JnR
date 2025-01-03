@@ -1,8 +1,3 @@
-
-// let img_f = 2;
-// let img_w = 576 * img_f;
-// let imh_h = 324 * img_f;
-
 const createLevel1 = () => new Level(
   //enemies
   [
@@ -14,7 +9,6 @@ const createLevel1 = () => new Level(
   ],
 
   //endboss
-
   new Endboss(
     "../../asset/img/art/2_enemy/7_endboss/3 Big bloated/Big_bloated_idle.png",
     4

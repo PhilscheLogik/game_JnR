@@ -78,8 +78,8 @@ class World {
       (item.w / divisor) * factor,
       item.h * factor
     );
-    item.drawRect(this.ctx);
-    item.drawOffsetRect(this.ctx);
+    // item.drawRect(this.ctx);
+    // item.drawOffsetRect(this.ctx);
     this.ctx.restore();
   }
 
