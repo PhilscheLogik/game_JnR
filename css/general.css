@@ -63,7 +63,12 @@ body {
     box-sizing: border-box;
 
     z-index: 1000;
-    text-align: center;
+    text-align: center;    
+}
+
+#orientation-warning p {
+    padding: 8px;
+    box-sizing: border-box;   
 }
 
 #orientation-warning img {

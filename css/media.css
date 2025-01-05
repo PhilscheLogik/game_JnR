@@ -36,4 +36,8 @@
     }
 }
 
-
+@media (pointer: coarse) { 
+    .touch-only {
+        display: block; 
+    }
+}
