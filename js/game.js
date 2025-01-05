@@ -3,8 +3,8 @@
 /** BUG SOUND
  * Fehler bei der Einstellung der Sounds
  * Wenn nichts ausgewählt wurde, wird der Sound bei Spielbeginn dennoch abgespielt
- * SFX Sound von der Welt wird abgespielt, aber nicht in der Lautstärke 
- * des Sliders -> Player funktioniert, aber auch ähnlich wie oben, wenn nichts ausgewählt, 
+ * SFX Sound von der Welt wird abgespielt, aber nicht in der Lautstärke
+ * des Sliders -> Player funktioniert, aber auch ähnlich wie oben, wenn nichts ausgewählt,
  * dann dennoch abgespielt
  */
 
@@ -49,7 +49,6 @@ const init = () => {
   world = null;
   world = new World(canvas, keyboard);
   console.log(world);
-  
 };
 
 const clearAllIntervals = () => {
@@ -57,7 +56,7 @@ const clearAllIntervals = () => {
   while (id--) {
     clearTimeout(id);
   }
-}
+};
 
 menuSound.loop = true;
 musicSlider.addEventListener("input", (e) => {
@@ -70,10 +69,10 @@ musicSlider.addEventListener("input", (e) => {
 
 const changeMusic = (newPath, obj) => {
   obj.pause();
-  obj.src = newPath; 
-  obj.load(); 
+  obj.src = newPath;
+  obj.load();
   obj.play();
-}
+};
 
 document.addEventListener("keydown", (event) => {
   switch (event.code) {
@@ -103,10 +102,6 @@ document.addEventListener("keydown", (event) => {
 
     case "KeyE":
       keyboard.E = true;
-      break;
-
-    case "Space":
-      keyboard.SPACE = true;
       break;
 
     default:
@@ -146,16 +141,54 @@ document.addEventListener("keyup", (event) => {
       keyboard.E = false;
       break;
 
-    case "Space":
-      keyboard.SPACE = false;
-      break;
-
     default:
       // console.log(`Unmapped key: ${event.code}`);
       break;
   }
 });
 
+const handleTouchEvent = (event, isPressed) => {
+  const button = event.target; // Das berührte Element
+  const keyCode = button.dataset.key; // Den zugeordneten Datenwert auslesen
+
+  if (keyCode) {
+    switch (keyCode) {
+      case "ArrowUp":
+        keyboard.UP = isPressed;
+        break;
+      case "ArrowLeft":
+        keyboard.LEFT = isPressed;
+        break;
+      case "ArrowDown":
+        keyboard.DOWN = isPressed;
+        break;
+      case "ArrowRight":
+        keyboard.RIGHT = isPressed;
+        break;
+      case "KeyQ":
+        keyboard.Q = isPressed;
+        break;
+      case "KeyE":
+        keyboard.E = isPressed;
+        break;
+      default:
+        // Optional: unmapped keys
+        // console.log(`Unmapped key: ${keyCode}`);
+        break;
+    }
+  }
+};
+
+// Touch-Interaktion hinzufügen
+document.querySelectorAll(".control-button").forEach((button) => {
+  button.addEventListener("touchstart", (event) => {
+    handleTouchEvent(event, true); // Taste gedrückt
+  });
+
+  button.addEventListener("touchend", (event) => {
+    handleTouchEvent(event, false); // Taste losgelassen
+  });
+});
 
 /** DE
  * Entfernt das Overlay-Element.
@@ -178,15 +211,15 @@ const toggleClass = (id, classname) => {
 };
 
 // Funktion zur Überprüfung der Ausrichtung
-const checkOrientation = () => {  
+const checkOrientation = () => {
   if (window.innerWidth < window.innerHeight) {
     // Hochformat
-    orientationWarning.classList.remove("d_none");    
+    orientationWarning.classList.remove("d_none");
   } else {
     // Querformat
-    orientationWarning.classList.add("d_none");    
+    orientationWarning.classList.add("d_none");
   }
-}
+};
 window.addEventListener("load", checkOrientation);
 window.addEventListener("resize", checkOrientation);
 
@@ -195,4 +228,3 @@ document.getElementById("myButton").addEventListener("click", () => {
   // Scrollt die Section in den sichtbaren Bereich
   section.scrollIntoView({ behavior: "smooth" });
 });
-

@@ -134,8 +134,7 @@ class PlayableCharacter extends Movement {
   animate() {
     let stateInterval = setInterval(() => {
       this.swim_sound.pause();
-      // if (this.isAttacking) return;
-
+      
       if (this.isDead()) {
         this.setState("DEATH");
         this.death_sound.play();

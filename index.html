@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Games</title>
+    <title>TSS</title>
 
     <link href="css/general.css" rel="stylesheet" type="text/css" />
     <link href="css/header.css" rel="stylesheet" type="text/css" />
@@ -15,7 +15,7 @@
 
     <link
       rel="icon"
-      href="../asset/img/favicon/favicon.png"
+      href="./asset/img/favicon/favicon.png"
       type="image/x-icon"
     />
   </head>
@@ -40,21 +40,41 @@
       <section id="canvas-section" class="d_none">
         <canvas id="canvas" style="width: 720px; height: 480px"></canvas>
 
-        <!-- left -->
-        <section id="joystick-container" class="d_none">
+        <!-- left  -->
+        <section id="joystick-container" class="touch-only">
           <div class="cross-container">
-            <div id="button-1" class="control-button top">↑</div>
-            <div id="button-2" class="control-button left">←</div>
-            <div id="button-3" class="control-button bottom">↓</div>
-            <div id="button-4" class="control-button right">→</div>
+            <div id="button-1" class="control-button top" data-key="ArrowUp">
+              ↑
+            </div>
+            <div id="button-2" class="control-button left" data-key="ArrowLeft">
+              ←
+            </div>
+            <div
+              id="button-3"
+              class="control-button bottom"
+              data-key="ArrowDown"
+            >
+              ↓
+            </div>
+            <div
+              id="button-4"
+              class="control-button right"
+              data-key="ArrowRight"
+            >
+              →
+            </div>
           </div>
         </section>
 
         <!-- right -->
-        <section id="controls" class="d_none">
+        <section id="controls" class="touch-only">
           <div class="cross-container">
-            <div id="button-5" class="control-button right">Q</div>
-            <div id="button-6" class="control-button left">#</div>
+            <div id="button-5" class="control-button right" data-key="KeyQ">
+              Q
+            </div>
+            <div id="button-6" class="control-button left" data-key="KeyE">
+              E
+            </div>
           </div>
         </section>
       </section>

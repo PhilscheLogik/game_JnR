@@ -382,8 +382,8 @@ canvas {
   
   .control-button {
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     background: rgba(255, 255, 255, 0.5);
     border: none;
     border-radius: 50%;
@@ -391,6 +391,10 @@ canvas {
     text-align: center;
     touch-action: manipulation;
     color: black;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   } 
 
   /* Positionierungen relativ zum Container */
