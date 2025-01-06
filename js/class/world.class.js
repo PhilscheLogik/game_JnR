@@ -19,6 +19,9 @@ class World {
   player_dmg_sound_path = "./asset/audio/effects/actions/dmg.mp3";
   player_dmg_sound = new Audio(this.player_dmg_sound_path);
 
+  hit_sound_path = "./asset/audio/effects/actions/hit.mp3";
+  hit_sound = new Audio(this.hit_sound_path);
+
   addObjToMapComplete(obj) {
     obj.forEach((item) => {
       this.addToMapComplete(item);
@@ -59,7 +62,7 @@ class World {
     }
     if (item.otherDirection) {
       this.ctx.scale(-1, 1);
-      x_coordinate = -item.x - (item.w / divisor)* factor;
+      x_coordinate = -item.x - (item.w / divisor) * factor;
     }
     this.ctx.drawImage(
       item.img,
@@ -99,11 +102,11 @@ class World {
 
   SFXVolume() {
     let SFXSlider = document.getElementById("effects-volume");
-    return SFXSlider.value;   
+    return SFXSlider.value;
   }
 
   /* -----------------------------------------------*/
-  constructor(canvas, keyboard) {    
+  constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
     this.keyboard = keyboard;
@@ -120,20 +123,55 @@ class World {
       this.checkEnemiesDeath();
       this.checkCollisionsItems();
       this.checkThrow();
+      this.checkDash();
       this.checkBubbleAttack();
-      this.checkEndbossWalk()
+      this.checkEndbossWalk();
     }, 500);
+
+    setInterval(() => {
+      this.checkIdle();
+    }, 10000);
+  }
+
+  checkIdle() {
+    if (this.keyboard.TIME) {
+      this.keyboard.TIME = false;
+    }
+  }
+
+  checkDash() {
+    if (this.keyboard.E) {
+      if (this.keyboard.UP && this.character.y > 50) {
+        this.character.y -= 20;
+      }
+
+      if (
+        this.keyboard.RIGHT &&
+        this.character.x < this.level.level_max_x_coordinate
+      ) {
+        this.character.x += 20;
+      }
+
+      if (this.keyboard.LEFT && this.character.x > 0) {
+        this.character.x -= 20;
+      }
+
+      if (
+        this.keyboard.DOWN &&
+        this.character.y < this.level.level_max_y_coordinate
+      ) {
+        this.character.y += 20;
+      }
+    }
   }
 
   checkEndbossWalk() {
-
-    if((this.level.endboss.x - this.character.x) < 250)
-    {
+    if (this.level.endboss.x - this.character.x < 250) {
       this.level.endboss.img.src = this.level.endboss.IMG_WALK.path;
-      this.level.endboss.totalFrames = this.level.endboss.IMG_WALK.animationCount;      
-      this.level.endboss.moveToLeft();      
+      this.level.endboss.totalFrames =
+        this.level.endboss.IMG_WALK.animationCount;
+      this.level.endboss.moveToLeft();
     }
-   
   }
 
   checkEnemiesDeath() {
@@ -177,12 +215,18 @@ class World {
   }
 
   checkThrow() {
-    if (this.keyboard.Q && this.character.magazine > 0) {
+    if (
+      this.keyboard.Q &&
+      (this.character.magazine > 0 || this.level.coins.length == 0)
+    ) {
       let bubble = new ThrowableObject(this.character.x, this.character.y, 1);
       this.bubbleAttack.push(bubble);
       this.character.magazine -= 10;
       this.muniBar.setPercentageItem(this.character.magazine);
       this.coinBar.setPercentageItem(this.character.coinCount);
+      this.hit_sound = new Audio(this.hit_sound_path);
+      this.hit_sound.volume = this.SFXVolume();
+      this.hit_sound.play();
     }
   }
 
@@ -218,7 +262,7 @@ class World {
       this.muniBar.setPercentageItem(this.character.magazine);
       this.coinBar.setPercentageItem(this.character.coinCount);
       if (obj instanceof Coin) {
-        this.level.coins.splice(i, 1);        
+        this.level.coins.splice(i, 1);
       }
       if (obj instanceof Ammunition) {
         this.level.ammunitions.splice(i, 1);

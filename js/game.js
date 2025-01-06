@@ -79,29 +79,35 @@ document.addEventListener("keydown", (event) => {
     case "KeyW":
     case "ArrowUp":
       keyboard.UP = true;
+      keyboard.TIME = true;
       break;
 
     case "KeyA":
     case "ArrowLeft":
       keyboard.LEFT = true;
+      keyboard.TIME = true;
       break;
 
     case "KeyS":
     case "ArrowDown":
       keyboard.DOWN = true;
+      keyboard.TIME = true;
       break;
 
     case "KeyD":
     case "ArrowRight":
       keyboard.RIGHT = true;
+      keyboard.TIME = true;
       break;
 
     case "KeyQ":
       keyboard.Q = true;
+      keyboard.TIME = true;
       break;
 
     case "KeyE":
       keyboard.E = true;
+      keyboard.TIME = true;
       break;
 
     default:
@@ -115,30 +121,35 @@ document.addEventListener("keyup", (event) => {
     case "KeyW":
     case "ArrowUp":
       keyboard.UP = false;
-
+      keyboard.TIME = true;
       break;
 
     case "KeyA":
     case "ArrowLeft":
       keyboard.LEFT = false;
+      keyboard.TIME = true;
       break;
 
     case "KeyS":
     case "ArrowDown":
       keyboard.DOWN = false;
+      keyboard.TIME = true;
       break;
 
     case "KeyD":
     case "ArrowRight":
       keyboard.RIGHT = false;
+      keyboard.TIME = true;
       break;
 
     case "KeyQ":
       keyboard.Q = false;
+      keyboard.TIME = true;
       break;
 
     case "KeyE":
       keyboard.E = false;
+      keyboard.TIME = true;
       break;
 
     default:
@@ -155,21 +166,27 @@ const handleTouchEvent = (event, isPressed) => {
     switch (keyCode) {
       case "ArrowUp":
         keyboard.UP = isPressed;
+        keyboard.TIME = true;
         break;
       case "ArrowLeft":
         keyboard.LEFT = isPressed;
+        keyboard.TIME = true;
         break;
       case "ArrowDown":
         keyboard.DOWN = isPressed;
+        keyboard.TIME = true;
         break;
       case "ArrowRight":
         keyboard.RIGHT = isPressed;
+        keyboard.TIME = true;
         break;
       case "KeyQ":
         keyboard.Q = isPressed;
+        keyboard.TIME = true;
         break;
       case "KeyE":
         keyboard.E = isPressed;
+        keyboard.TIME = true;
         break;
       default:
         // Optional: unmapped keys

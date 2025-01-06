@@ -3,7 +3,8 @@ class Keyboard {
   RIGHT = false;
   UP = false;
   DOWN = false;
-  SPACE = false;
   Q = false;
-  E= false;
+  E = false;
+
+  TIME = true;
 }

@@ -4,7 +4,7 @@ class PlayableCharacter extends Movement {
   world;
   speed = 3;
   swim_sound = new Audio("./asset/audio/effects/char/swim2.mp3");
-  hit_sound = new Audio("./asset/audio/effects/actions/hit.mp3");
+  // hit_sound = new Audio("./asset/audio/effects/actions/hit.mp3");
   death_sound = new Audio("./asset/audio/effects/enemies/sinister_laugh.mp3");
 
   offset = { x: 5, y: 10, w: 20, h: 15};
@@ -24,6 +24,11 @@ class PlayableCharacter extends Movement {
     animationCount: 6,
   };
 
+  IMG_IDLE_LONG = {
+    path: "../../asset/img/art/1_character/01_steam_man/Idle3.png",
+    animationCount: 6,
+  };
+
   IMG_DEATH = {
     path: "../../asset/img/art/1_character/01_steam_man/Death.png",
     animationCount: 6,
@@ -32,12 +37,7 @@ class PlayableCharacter extends Movement {
   IMG_HURT = {
     path: "../../asset/img/art/1_character/01_steam_man/Hurt6.png",
     animationCount: 6,
-  };
-
-  IMG_SHOOT = {
-    path: "../../asset/img/art/1_character/01_steam_man/Hurt6.png",
-    animationCount: 6,
-  };
+  };  
 
   constructor() {
     super().loadImage(this.IMG_IDLE.path);
@@ -46,14 +46,14 @@ class PlayableCharacter extends Movement {
     this.totalFrames = Number(this.IMG_IDLE.animationCount);
 
     this.swim_sound.volume = 0;
-    this.hit_sound.volume = 0;
+    // this.hit_sound.volume = 0;
     this.death_sound.volume = 0;
 
     const SFXSlider = document.getElementById("effects-volume");
     SFXSlider.addEventListener("input", (e) => {
       const volume = Number(e.target.value);
       this.swim_sound.volume = volume;
-      this.hit_sound.volume = volume;
+      // this.hit_sound.volume = volume;
       this.death_sound.volume = volume;
     });
 
@@ -76,9 +76,9 @@ class PlayableCharacter extends Movement {
         this.img.src = this.IMG_ATTACK.path;
         this.totalFrames = this.IMG_ATTACK.animationCount;
         break;
-      case "SHOOT":
-        this.img.src = this.IMG_SHOOT.path;
-        this.totalFrames = this.IMG_SHOOT.animationCount;
+      case "IDLE_LONG":
+        this.img.src = this.IMG_IDLE_LONG.path;
+        this.totalFrames = this.IMG_IDLE_LONG.animationCount;
         break;
       case "HURT":
         this.img.src = this.IMG_HURT.path;
@@ -95,15 +95,14 @@ class PlayableCharacter extends Movement {
   executeAttack() {
     if (this.isAttacking) return;
     this.isAttacking = true;
-    this.hit_sound = new Audio("./asset/audio/effects/actions/hit.mp3");
-    this.hit_sound.play();
+    
 
     const interval = setInterval(() => {
       this.frameIndex++;
       if (this.frameIndex >= this.totalFrames) {
         clearInterval(interval);
         this.isAttacking = false;
-        this.hit_sound.pause();
+        // this.hit_sound.pause();
       }
     }, 200);
   }
@@ -130,7 +129,7 @@ class PlayableCharacter extends Movement {
     this.swim_sound.play();
   }
 
-  //---------------------------------
+  
   animate() {
     let stateInterval = setInterval(() => {
       this.swim_sound.pause();
@@ -163,6 +162,8 @@ class PlayableCharacter extends Movement {
       } else if (this.world.keyboard.LEFT && this.x > 0) {
         this.setState("SWIM");
         this.moveLeft();
+      } else if (!this.world.keyboard.TIME) {
+        this.setState("IDLE_LONG");
       } else {
         this.setState("IDLE");
       }
@@ -182,19 +183,15 @@ class PlayableCharacter extends Movement {
       this.world.camera_y = -this.y + 55;
     }, 100 / 6);
 
-    let animationIntervall = setInterval(() => {
-      // Animation
+    let animationIntervall = setInterval(() => {      
       this.frameIndex++;
-
       if (
         this.currentState === "DEATH" &&
         this.frameIndex >= this.totalFrames
       ) {
         clearInterval(animationIntervall);
       } else if (this.frameIndex >= this.totalFrames) {
-        this.frameIndex = 0;
-
-        // Nach Abschluss einer Attack-Animation zu Idle wechseln
+        this.frameIndex = 0;       
         if (this.currentState === "ATTACK") {
           this.setState("IDLE");
         }

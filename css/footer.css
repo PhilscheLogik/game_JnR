@@ -1,6 +1,8 @@
 /* -------------------  Footer -----------------*/
 footer {
-    height: 300px;
+    /* height: 300px; */
+
+    padding: 16px 0;
 
     background-color: var(--bg_color_footer);
     color: var(--bg_color);
@@ -28,4 +30,8 @@ footer a {
 
 footer a:hover {
     filter: drop-shadow(0px 0px 2px var(--bg_color));
+}
+
+footer p {
+    padding: 8px;
 }
