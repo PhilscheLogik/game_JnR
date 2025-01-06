@@ -4,7 +4,6 @@ class PlayableCharacter extends Movement {
   world;
   speed = 3;
   swim_sound = new Audio("./asset/audio/effects/char/swim2.mp3");
-  // hit_sound = new Audio("./asset/audio/effects/actions/hit.mp3");
   death_sound = new Audio("./asset/audio/effects/enemies/sinister_laugh.mp3");
 
   offset = { x: 5, y: 10, w: 20, h: 15};

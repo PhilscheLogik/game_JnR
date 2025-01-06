@@ -1,18 +1,23 @@
 "use strict";
-/**
- * Hier werden Funktionen gespeichert, die HTML Code rendern.
+
+/** DE
+ * Erstellt das Startmenü und fügt es dem HTML-Element mit der ID "menu-section" hinzu.
  */
-// ----------------------------------------- Warenkorb ------------------------------------------------------
-
-
+/** EN
+ * Creates the start menu and appends it to the HTML element with the ID "menu-section".
+ */
 const createStartMenu = () => {    
   let contentRef = document.getElementById("menu-section");  
   contentRef.innerHTML = renderStartMenu();
 };
 
 /** DE
- * Rendert den Warenkorb, nutzt dazu createCartItems()(src=script.js).
- * @returns Gibt dazu benötigten HTML Code zurück.
+ * Rendert den HTML-Inhalt für das Startmenü.
+ * @returns {string} Der generierte HTML-Code für das Startmenü.
+ */
+/** EN
+ * Renders the HTML content for the start menu.
+ * @returns {string} The generated HTML code for the start menu.
  */
 const renderStartMenu = () => `
 <div>
@@ -32,11 +37,25 @@ const renderStartMenu = () => `
   ${renderBubbleMenu()}  
 </div>`;
 
+/** DE
+ * Erstellt das "HowToPlay"-Menü und fügt es dem HTML-Element mit der ID "menu-section" hinzu.
+ */
+/** EN
+ * Creates the "How to Play" menu and appends it to the HTML element with the ID "menu-section".
+ */
 const createHowToPlay = () => {
   let contentRef = document.getElementById("menu-section");
   contentRef.innerHTML = renderHowToPlay();
 };
 
+/** DE
+ * Rendert den HTML-Inhalt für das HowToPlay-menü.
+ * @returns {string} Der generierte HTML-Code.
+ */
+/** EN
+ * Renders the HTML content for the How To Play menu.
+ * @returns {string} The generated HTML code.
+ */
 const renderHowToPlay = () => `
 <div>  
   <h2 id="h2-htp" >HOW TO PLAY</h2>
@@ -59,6 +78,12 @@ const renderHowToPlay = () => `
   ${renderBubbleMenu()}  
 </div>`;
 
+/** DE
+ * Erstellt das Game Over-Menü und fügt es dem HTML-Element mit der ID "menu-section" hinzu.
+ */
+/** EN
+ * Creates the Game Over menu and appends it to the HTML element with the ID "menu-section".
+ */
 const createGameOver = () => {
   let contentRef = document.getElementById("menu-section");
   contentRef.innerHTML = renderGameOver();
@@ -67,6 +92,14 @@ const createGameOver = () => {
   
 };
 
+/** DE
+ * Rendert den HTML-Inhalt für das GameOver-menü.
+ * @returns {string} Der generierte HTML-Code.
+ */
+/** EN
+ * Renders the HTML content for the GameOver menu.
+ * @returns {string} The generated HTML code.
+ */
 const renderGameOver = () => `
 <div class="go-overlay">  
   <h2 id="h2-fail">GAME OVER</h2>
@@ -87,6 +120,12 @@ const renderGameOver = () => `
   ${renderBubbleMenu()}  
 </div>`;
 
+/** DE
+ * Erstellt das WinScreen-Menü und fügt es dem HTML-Element mit der ID "menu-section" hinzu.
+ */
+/** EN
+ * Creates the WinScreen menu and appends it to the HTML element with the ID "menu-section".
+ */
 const createWinScreen = () => {
   let contentRef = document.getElementById("menu-section");
   contentRef.innerHTML = renderWinScreen();
@@ -95,6 +134,14 @@ const createWinScreen = () => {
   clearAllIntervals();   
 };
 
+/** DE
+ * Rendert den HTML-Inhalt für das WinScreen-menü.
+ * @returns {string} Der generierte HTML-Code.
+ */
+/** EN
+ * Renders the HTML content for the WinScreen menu.
+ * @returns {string} The generated HTML code.
+ */
 const renderWinScreen = () => `
 <div class="win-overlay"> 
   <h2 id="h2-win">WIN</h2>
@@ -115,6 +162,14 @@ const renderWinScreen = () => `
   ${renderBubbleMenu()}  
 </div>`;
 
+/** DE
+ * Rendert den HTML-Inhalt für das Bubbles für den Hintergrund.
+ * @returns {string} Der generierte HTML-Code.
+ */
+/** EN
+ * Renders the HTML content for the bubbles for the background.
+ * @returns {string} The generated HTML code .
+ */
 const renderBubbleMenu = () =>`
 <div class="menu-bubble bubble--1"></div>
 <div class="menu-bubble bubble--2"></div>
