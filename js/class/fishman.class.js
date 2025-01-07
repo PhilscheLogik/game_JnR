@@ -54,7 +54,7 @@ class Fishman extends Enemy {
    * @type {object}
    */
   IMG_DEATH = {
-    path: "./../../asset/img/art/2_enemy/5_fish_man/Death.png",
+    path: "./asset/img/art/2_enemy/5_fish_man/Death.png",
     animationCount: 6,
   };
 }

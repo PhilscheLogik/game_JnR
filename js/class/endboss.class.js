@@ -76,7 +76,7 @@ class Endboss extends Enemy {
    * @type {object}
    */
   IMG_DEATH = {
-    path: "./../../asset/img/art/2_enemy/7_endboss/3 Big bloated/Big_bloated_death.png",
+    path: "./asset/img/art/2_enemy/7_endboss/3 Big bloated/Big_bloated_death.png",
     animationCount: 4,
   };
 
@@ -89,7 +89,7 @@ class Endboss extends Enemy {
    * @type {object}
    */
   IMG_WALK = {
-    path: "./../../asset/img/art/2_enemy/7_endboss/3 Big bloated/Big_bloated_walk2.png",
+    path: "./asset/img/art/2_enemy/7_endboss/3 Big bloated/Big_bloated_walk2.png",
     animationCount: 6,
   };
 

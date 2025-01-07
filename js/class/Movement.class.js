@@ -94,7 +94,7 @@ class Movement extends DrawableObject {
    * @type {object}
    */
   IMG_DEATH = {
-    path: "./../../asset/img/art/2_enemy/06_fish/Attack.png",
+    path: "./asset/img/art/2_enemy/06_fish/Attack.png",
     animationCount: 6,
   };
 

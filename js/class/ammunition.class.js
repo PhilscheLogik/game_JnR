@@ -61,7 +61,7 @@ class Ammunition extends Item {
    * Initializes the ammunition with a specific image path.
    */
   constructor() {
-    const IMG_ITEM_PATH = "./../../asset/img/art/8_items/munit_transparent.png";
+    const IMG_ITEM_PATH = "./asset/img/art/8_items/munit_transparent.png";
     super(IMG_ITEM_PATH);
   }
 }

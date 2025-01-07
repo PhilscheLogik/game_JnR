@@ -56,7 +56,7 @@ class StatusBar extends DrawableObject {
    * @type {Object}
    */
   IMG_LP_BAR = {
-    path: "../../asset/img/art/4_ui/status_bar/lp2_bar.png",
+    path: "./asset/img/art/4_ui/status_bar/lp2_bar.png",
     animationCount: 9,
     x: 5,
     y: 5,
@@ -73,7 +73,7 @@ class StatusBar extends DrawableObject {
    * @type {Object}
    */
   IMG_COIN_BAR = {
-    path: "../../asset/img/art/4_ui/status_bar/plasma_y_bar.png",
+    path: "./asset/img/art/4_ui/status_bar/plasma_y_bar.png",
     animationCount: 9,
     x: 5,
     y: 50,
@@ -90,7 +90,7 @@ class StatusBar extends DrawableObject {
    * @type {Object}
    */
   IMG_MUNI_BAR = {
-    path: "../../asset/img/art/4_ui/status_bar/plasma_b_bar.png",
+    path: "./asset/img/art/4_ui/status_bar/plasma_b_bar.png",
     animationCount: 9,
     x: 25,
     y: 50,
