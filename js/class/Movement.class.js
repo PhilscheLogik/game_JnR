@@ -94,7 +94,7 @@ class Movement extends DrawableObject {
    * @type {object}
    */
   IMG_DEATH = {
-    path: "../../asset/img/art/2_enemy/06_fish/Attack.png",
+    path: "./../../asset/img/art/2_enemy/06_fish/Attack.png",
     animationCount: 6,
   };
 
@@ -252,8 +252,8 @@ class Movement extends DrawableObject {
    */
   isHurt() {
     let timepassed = new Date().getTime() - this.lastHit;
-    timepassed = timepassed / 1000;
-    return timepassed < 2;
+    timepassed = timepassed / 100;
+    return timepassed < 3;
   }
 
   /** DE

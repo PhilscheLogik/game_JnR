@@ -45,7 +45,7 @@ class ThrowableObject extends Movement {
    * Path to the image of the object.
    * @type {string}
    */
-  IMG_BUBBLE = "../../asset/img/art/7_effects/bubble_b2_transparent.png";
+  IMG_BUBBLE = "./../../asset/img/art/7_effects/bubble_b2_transparent.png";
 
   /** DE
    * Konstruktor der Klasse.

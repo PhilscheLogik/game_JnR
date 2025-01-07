@@ -61,7 +61,7 @@ class Coin extends Item {
    * Initializes the coin with a specific image path.
    */
   constructor() {
-    const IMG_ITEM_PATH = "../../asset/img/art/8_items/coin_transparent.png";
+    const IMG_ITEM_PATH = "./../../asset/img/art/8_items/coin_transparent.png";
     super(IMG_ITEM_PATH);
   }
 }

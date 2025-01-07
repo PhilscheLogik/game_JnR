@@ -1,5 +1,5 @@
 /* ------------------- Header -----------------*/
-header {
+/* header {
     background-color: var(--font_highlight);
     color: var(--bg_color);
 
@@ -17,7 +17,7 @@ header {
     align-items: center;
     z-index: 1;
     box-sizing: border-box;
-}
+}*/
 
 /* -------------------  Navbar  -----------------*/
 nav img {
@@ -27,5 +27,46 @@ nav img {
 
 nav img:hover {
     filter: drop-shadow(0px 0px 2px var(--bg_color));
-}
+} 
+
+/* Header Styling */
+header {
+    background: linear-gradient(135deg, #006994, #00b4d8); /* Wasserähnlicher Farbverlauf */
+    color: yellow;; /* Helles Weiß-Blau, inspiriert vom Meer */
+    padding: 10px 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    box-sizing: border-box;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Schatteneffekt wie Wellen */
+    border-bottom: 3px solid #013a63; /* Dunkle maritime Akzentlinie */
+  }
+  
+  /* Header Title Styling */
+  header h1 {
+    font-family: 'Cormorant Garamond', serif; /* Elegante Schriftart */
+    font-size: 2rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4); /* Tiefeneffekt */
+    margin: 0;
+  }
+     
+  /* Optional: Animierte Wellen am unteren Rand des Headers */
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="1" d="M0,256L48,224C96,192,192,128,288,112C384,96,480,128,576,138.7C672,149,768,139,864,144C960,149,1056,171,1152,186.7C1248,203,1344,213,1392,218.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
+    z-index: 1;
+  }
+    
+  
 

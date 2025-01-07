@@ -45,7 +45,7 @@ class PlayableCharacter extends Movement {
    * @param {number} w - Width of the offset.
    * @param {number} h - Height of the offset.
    */
-  offset = { x: 5, y: 10, w: 20, h: 15 };
+  offset = { x: 10, y: 5, w: 20, h: 10 };
 
   /** DE
    * Bewegungsgeschwindigkeit des Objekts.
@@ -98,7 +98,7 @@ class PlayableCharacter extends Movement {
    * @type {Object}
    */
   IMG_SWIM = {
-    path: "../../asset/img/art/1_character/01_steam_man/Swim.png",
+    path: "./../../asset/img/art/1_character/01_steam_man/Swim.png",
     animationCount: 6,
   };
 
@@ -111,7 +111,7 @@ class PlayableCharacter extends Movement {
    * @type {Object}
    */
   IMG_ATTACK = {
-    path: "../../asset/img/art/1_character/01_steam_man/Attack3.png",
+    path: "./../../asset/img/art/1_character/01_steam_man/Attack3.png",
     animationCount: 6,
   };
 
@@ -124,7 +124,7 @@ class PlayableCharacter extends Movement {
    * @type {Object}
    */
   IMG_IDLE = {
-    path: "../../asset/img/art/1_character/01_steam_man/Idle.png",
+    path: "./../../asset/img/art/1_character/01_steam_man/Idle.png",
     animationCount: 6,
   };
 
@@ -137,7 +137,7 @@ class PlayableCharacter extends Movement {
    * @type {Object}
    */
   IMG_IDLE_LONG = {
-    path: "../../asset/img/art/1_character/01_steam_man/Idle3.png",
+    path: "./../../asset/img/art/1_character/01_steam_man/Idle3.png",
     animationCount: 6,
   };
 
@@ -150,7 +150,7 @@ class PlayableCharacter extends Movement {
    * @type {Object}
    */
   IMG_DEATH = {
-    path: "../../asset/img/art/1_character/01_steam_man/Death.png",
+    path: "./../../asset/img/art/1_character/01_steam_man/Death.png",
     animationCount: 6,
   };
 
@@ -163,7 +163,7 @@ class PlayableCharacter extends Movement {
    * @type {Object}
    */
   IMG_HURT = {
-    path: "../../asset/img/art/1_character/01_steam_man/Hurt6.png",
+    path: "./../../asset/img/art/1_character/01_steam_man/Hurt6.png",
     animationCount: 6,
   };
 
@@ -320,7 +320,7 @@ class PlayableCharacter extends Movement {
         }, 1000);
       } else if (this.isHurt()) {
         this.setState("HURT");
-        setTimeout(() => {}, 1000);
+        setTimeout(() => {}, 10);
       } else if (this.world.keyboard.Q) {
         this.setState("ATTACK");
         this.executeAttack();

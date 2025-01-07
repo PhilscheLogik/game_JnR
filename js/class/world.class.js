@@ -463,7 +463,7 @@ class World {
    * Makes the end boss walk when the character is nearby.
    */
   checkEndbossWalk() {
-    if (this.level.endboss.x - this.character.x < 250) {
+    if (this.level.endboss.x - this.character.x < 300) {
       this.level.endboss.img.src = this.level.endboss.IMG_WALK.path;
       this.level.endboss.totalFrames =
         this.level.endboss.IMG_WALK.animationCount;
@@ -639,32 +639,14 @@ class World {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
     this.ctx.translate(this.camera_x, 0);
-
-    // zeichnet Backgrounds
     this.addObjToMapComplete(this.level.backgroundObjects);
-
-    // zeichnet die Feinde
     this.addObjToMapInParts(this.level.enemies, 4, 2);
-
-    // zeichnet Endboss
     this.addToMapInParts(this.level.endboss, 4, 9);
-
-    // zeichnet Muni
     this.addObjToMapInParts(this.level.ammunitions, 5, 0.5);
-
-    // zeichnet Coins
     this.addObjToMapInParts(this.level.coins, 8, 0.5);
-
-    // zeichnet Player
     this.addToMapInParts(this.character, 6, 1.2);
-
-    // BubbleAttack
     this.addObjToMapInParts(this.bubbleAttack, 1, 1);
-
-    // zeichnet Luftblasen
     this.addObjToMapComplete(this.level.foregrounds);
-
-    // status
     this.ctx.translate(-this.camera_x, 0);
     this.addToMapStatus(this.statusBar, 9, 0.8);
     this.addToMapStatus(this.coinBar, 9, 0.8);

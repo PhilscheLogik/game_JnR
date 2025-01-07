@@ -76,7 +76,7 @@ class Endboss extends Enemy {
    * @type {object}
    */
   IMG_DEATH = {
-    path: "../../asset/img/art/2_enemy/7_endboss/3 Big bloated/Big_bloated_death.png",
+    path: "./../../asset/img/art/2_enemy/7_endboss/3 Big bloated/Big_bloated_death.png",
     animationCount: 4,
   };
 
@@ -89,7 +89,7 @@ class Endboss extends Enemy {
    * @type {object}
    */
   IMG_WALK = {
-    path: "../../asset/img/art/2_enemy/7_endboss/3 Big bloated/Big_bloated_walk2.png",
+    path: "./../../asset/img/art/2_enemy/7_endboss/3 Big bloated/Big_bloated_walk2.png",
     animationCount: 6,
   };
 
@@ -104,14 +104,23 @@ class Endboss extends Enemy {
    * @param {number} divisor - Number of animation frames.
    */
   constructor(path, divisor) {
-    super(path, divisor);
-
+    super().loadImage(path);
     this.totalFrames = divisor;
 
     this.x = 1000;
     this.y = -150;
   }
 
+  moveToLeft() {
+    setInterval(() => {
+      this.x -= this.speed;
+      this.otherDirection = true;
+      if (this.x < -1000) {
+        this.x = 1500;
+        this.y = -150;
+      }
+    }, 100 / 6);
+  }
   /** DE
    * Animiert den Endgegner
    */

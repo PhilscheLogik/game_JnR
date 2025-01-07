@@ -147,6 +147,7 @@ class StatusBar extends DrawableObject {
    */
   setPercentageEnergy(percentage) {
     this.percentage = percentage;
+    this.resolveImageIndexEnergy();
   }
 
   /** DE

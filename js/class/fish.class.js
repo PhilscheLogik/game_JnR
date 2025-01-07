@@ -55,7 +55,7 @@ class Fish extends Enemy {
    * @type {object}
    */
   IMG_DEATH = {
-    path: "../../asset/img/art/2_enemy/6_fish/Attack.png",
+    path: "./../../asset/img/art/2_enemy/6_fish/Attack.png",
     animationCount: 6,
   };  
 }

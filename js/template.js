@@ -65,7 +65,7 @@ const renderHowToPlay = () => `
     <p><span><span class="key">↓</span> <span class="key">S</span></span> <span>Mit der Pfeiltaste 'unten' oder der Taste 'S' ist eine Bewegung nach unten möglich.</span></p>
     <p><span><span class="key">→</span> <span class="key">D</span></span> <span>Mit der Pfeiltaste 'rechts' oder der Taste 'D' ist eine Bewegung nach rechts möglich.</span></p>    
     <p><span class="key">Q</span> <span>Mit der Taste 'Q' kann man schießen, <br> wenn Munition vorhanden ist.</span></p>
-    <p><span class="key">E</span> <span>Mit der Taste 'E' kann man porten/glitchen.</span></p>
+    <p><span class="key">E</span> <span>Mit der gedrückten Taste 'E' in gewünschter Richtung kann man porten/glitchen.</span></p>
   </section>
 
   <div>    
